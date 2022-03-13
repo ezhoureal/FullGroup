@@ -40,12 +40,10 @@ object EventStore {
         this.id = preferences.getInt("id", 0)
     }
 
-    fun add(title: String, date: LocalDate,
-            startTime: LocalTime, endTime: LocalTime, perMinit: PerMinit) {
-        val e = Event(this.id++, title, date, startTime, endTime, perMinit)
+    fun add(event: Event, date: LocalDate) {
         if (!this.events.containsKey(date)) {
             this.events[date] = ArrayList()
         }
-        this.events[date]?.add(e)
+        this.events[date]?.add(event)
     }
 }
