@@ -8,4 +8,12 @@ class AddReminder : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_reminder)
     }
+
+    // called when submit button is pushed
+    fun onSubmit() {
+        // validation check
+
+
+        EventStore.add()
+    }
 }
