@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PerminitFrontend">
         <activity
+            android:name=".AddReminder"
+            android:exported="false"
+            android:label="@string/title_activity_add_reminder"
+            android:theme="@style/Theme.PerminitFrontend.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

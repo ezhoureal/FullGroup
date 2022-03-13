@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Perminit-Frontend</string>
+    <string name="title_activity_add_reminder">AddReminder</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
+    <!-- Stings for the add/edit activity screens-->
+    <string name="pm_select">Choose your PerMinit</string>
+    <string name="new_e_title">Create a New Reminder</string>
+    <string name="edit_e_title">Edit Event</string>
+    <string name="nlp_prompt">Or use natural language processing</string>
+    <string name="dummy_event">e.g Submit Tax Form</string>
+    <string name="dummy_nlp">Type in a new event...</string>
+
 </resources>
