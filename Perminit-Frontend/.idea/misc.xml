@@ -6,6 +6,11 @@
         <entry key="..\:/Users/Samuel Wallace/FullGroup/Perminit-Frontend/app/src/main/res/layout/activity_add_reminder.xml" value="0.13983050847457626" />
         <entry key="..\:/Users/Samuel Wallace/FullGroup/Perminit-Frontend/app/src/main/res/layout/activity_main.xml" value="0.7333333333333334" />
         <entry key="..\:/Users/Samuel Wallace/FullGroup/Perminit-Frontend/app/src/main/res/xml/root_preferences.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_add_reminder.xml" value="0.31486663818359373" />
+        <entry key="app/src/main/res/layout/activity_todo_list.xml" value="0.2715057373046875" />
+        <entry key="app/src/main/res/layout/content_add_reminder.xml" value="0.2894485473632813" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.36419067382812503" />
+        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.3085220336914062" />
       </map>
     </option>
   </component>

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Perminit-Frontend</string>
     <string name="title_activity_add_reminder">AddReminder</string>
+    <string name="title_activity_todo_list">TodoList</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -18,5 +19,11 @@
     <string name="nlp_prompt">Or use natural language processing</string>
     <string name="dummy_event">e.g Submit Tax Form</string>
     <string name="dummy_nlp">Type in a new event...</string>
+
+    <!-- String for TodoList screen  -->
+    <string name="todolist_title">My To-Do List</string>
+    <string name="add_event_btn">Add Event</string>
+    <string name="calendar_btn">My Calendar</string>
+    <string name="todo_btn">Todo List</string>
 
 </resources>
