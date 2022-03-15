@@ -21,7 +21,7 @@ class AddReminder : AppCompatActivity() {
         val startTime = LocalTime.now()
         val endTime = LocalTime.now()
         val title = ""
-        val
+        val perMinitId = 0
 
         // validation check
         if (title.isEmpty()) {
@@ -32,11 +32,11 @@ class AddReminder : AppCompatActivity() {
             return
         }
 
-        var event = Event(EventStore.id++, title, date, startTime, endTime, perMinit)
+        var event = Event(EventStore.id++, title, date, startTime, endTime, perMinitId)
         if (notes) {
             event.notes = notes
         }
-        if (lcoation) {
+        if (location) {
             event.location = location
         }
         EventStore.add(event, date)

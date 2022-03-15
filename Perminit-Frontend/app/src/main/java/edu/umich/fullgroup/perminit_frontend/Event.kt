@@ -6,7 +6,7 @@ import java.time.LocalTime
 
 data class Event (val id: Int, val title: String, var date: LocalDate,
                   var startTime: LocalTime, var endTime: LocalTime,
-                  var perMinit: PerMinit) {
+                  var perMinitId: Int) {
     var notes = ""
     var location = ""
 }
