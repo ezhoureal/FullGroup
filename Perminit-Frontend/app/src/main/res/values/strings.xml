@@ -25,5 +25,7 @@
     <string name="add_event_btn">Add Event</string>
     <string name="calendar_btn">My Calendar</string>
     <string name="todo_btn">Todo List</string>
+    <string name="quick_add">Type to quickly add a new event...</string>
+    <string name="voice_btn">Voice-to-Text</string>
 
 </resources>
