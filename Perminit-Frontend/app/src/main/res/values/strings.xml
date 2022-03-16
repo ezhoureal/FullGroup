@@ -30,5 +30,7 @@
     <string name="todo_list">To-Do list</string>
     <string name="event_name">Event Name</string>
     <string name="event_time">Event Time</string>
-
+    <string name="minit_msg">Minit Msg</string>
+    <string name="minit">Minit</string>
+    <string name="edit_btn">Edit event</string>
 </resources>
