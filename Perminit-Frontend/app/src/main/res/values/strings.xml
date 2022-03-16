@@ -27,5 +27,8 @@
     <string name="todo_btn">Todo List</string>
     <string name="quick_add">Type to quickly add a new event...</string>
     <string name="voice_btn">Voice-to-Text</string>
+    <string name="todo_list">To-Do list</string>
+    <string name="event_name">Event Name</string>
+    <string name="event_time">Event Time</string>
 
 </resources>
