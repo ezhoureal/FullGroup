@@ -29,9 +29,9 @@ class EventAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         // create a new view
         val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item, parent, false)
+            .inflate(R.layout.todo_item, parent, false)
 
-        // manage events to display
+        // filter and sort events to display on the to-do list
         for ((date, array) in EventStore.events) {
             if (date >= LocalDate.now()) {
                 dataset += array
