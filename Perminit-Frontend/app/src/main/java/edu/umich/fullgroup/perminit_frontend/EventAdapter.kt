@@ -35,7 +35,6 @@ class EventAdapter(
 
         Log.d("data", EventStore.events.toString())
 
-
         return EventViewHolder(adapterLayout)
     }
 

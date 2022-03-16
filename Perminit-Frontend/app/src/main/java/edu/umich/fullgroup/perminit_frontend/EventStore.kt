@@ -10,7 +10,8 @@ import java.time.LocalTime
 
 
 object EventStore {
-    var events: HashMap<LocalDate, ArrayList<Event>> = HashMap<LocalDate, ArrayList<Event>>()
+    var events = HashMap<LocalDate, ArrayList<Event>>()
+    var list = ArrayList<Event>()
     var id = 0
 
     // store events to local storage
@@ -39,6 +40,8 @@ object EventStore {
         // load id
         val preferences = context.getSharedPreferences("state", Context.MODE_PRIVATE)
         this.id = preferences.getInt("id", 0)
+
+        updateList()
     }
 
     fun add(event: Event, date: LocalDate) {
@@ -46,5 +49,19 @@ object EventStore {
             this.events[date] = ArrayList()
         }
         this.events[date]?.add(event)
+
+        // add event to list
+        updateList()
+    }
+
+    fun updateList() {
+        list.clear()
+        // filter and sort events to display on the to-do list
+        for ((date, array) in EventStore.events) {
+            if (date >= LocalDate.now()) {
+                list += array
+            }
+        }
+        list.sortedWith(compareBy({ it.date }, { it.startTime }))
     }
 }

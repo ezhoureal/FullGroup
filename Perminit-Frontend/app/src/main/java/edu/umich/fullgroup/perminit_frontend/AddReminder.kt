@@ -1,7 +1,7 @@
 package edu.umich.fullgroup.perminit_frontend
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +9,7 @@ import edu.umich.fullgroup.perminit_frontend.databinding.ActivityAddReminderBind
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
+
 
 class AddReminder : AppCompatActivity() {
     private lateinit var view: ActivityAddReminderBinding
@@ -42,6 +43,8 @@ class AddReminder : AppCompatActivity() {
 //            event.location = location
 //        }
         EventStore.add(event, date)
+        val returnIntent = Intent()
+        setResult(RESULT_OK, returnIntent);
         finish()
     }
 
