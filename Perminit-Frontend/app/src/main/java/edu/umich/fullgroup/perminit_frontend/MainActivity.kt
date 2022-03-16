@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import java.time.LocalDate
+import java.time.LocalTime
 
 class MainActivity : AppCompatActivity() {
     fun addEvent(view: View?) = startActivity(Intent(this,AddReminder::class.java))
@@ -16,6 +18,9 @@ class MainActivity : AppCompatActivity() {
         EventStore.load(applicationContext)
         PerMinitStore.load()
         Log.d("data", EventStore.events.toString())
+
+        val e = Event(1, "test", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)
+        EventStore.add(e, LocalDate.now())
 
         val recyclerView = findViewById<RecyclerView>(R.id.eventList)
         recyclerView.adapter = EventAdapter(this, ArrayList())

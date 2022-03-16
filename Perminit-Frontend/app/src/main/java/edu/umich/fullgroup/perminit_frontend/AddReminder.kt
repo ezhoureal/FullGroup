@@ -1,14 +1,11 @@
 package edu.umich.fullgroup.perminit_frontend
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import edu.umich.fullgroup.perminit_frontend.databinding.ActivityAddReminderBinding
-import java.lang.Exception
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -24,7 +21,8 @@ class AddReminder : AppCompatActivity() {
     // called when submit button is pushed
     fun onSubmit(v: View) {
         // get data from view
-        val date: LocalDate = LocalDate.parse(view.editTextDate.text)
+        val dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy")
+        val date = LocalDate.parse(view.editTextDate.text, dateFormat)
         val startTime = LocalTime.parse(view.editTextStartTime.text)
         val endTime = LocalTime.parse(view.editTextEndTime.text)
         val title = view.NameField.text.toString()
@@ -44,7 +42,6 @@ class AddReminder : AppCompatActivity() {
 //            event.location = location
 //        }
         EventStore.add(event, date)
-        Log.d("submit", "event added")
         finish()
     }
 
