@@ -37,7 +37,7 @@ class EventAdapter(
                 dataset += array
             }
         }
-        dataset.sortedWith(compareBy{ it.date })
+        dataset.sortedWith(compareBy({ it.date }, { it.startTime }))
 
         return ItemViewHolder(adapterLayout)
     }
@@ -47,7 +47,7 @@ class EventAdapter(
      */
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
-        holder.textView.text = context.resources.getString(item.stringResourceId)
+//        holder.textView.text = context.resources.getString(item.stringResourceId)
     }
 
     /**
