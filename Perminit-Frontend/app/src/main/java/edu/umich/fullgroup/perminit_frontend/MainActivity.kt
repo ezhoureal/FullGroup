@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity() {
     fun addEvent(view: View?) = startActivity(Intent(this,AddReminder::class.java))
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_todo_list)
 
         EventStore.load(applicationContext)
         PerMinitStore.load()

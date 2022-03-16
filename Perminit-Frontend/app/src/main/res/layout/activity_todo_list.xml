@@ -26,6 +26,7 @@
         android:layout_marginBottom="18dp"
         android:clickable="true"
         android:contentDescription="@string/add_event_btn"
+        android:onClick="addEvent"
         app:backgroundTint="#03A9F4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/calendarButton"
@@ -94,4 +95,11 @@
         app:layout_constraintBottom_toTopOf="@+id/todoButton"
         app:layout_constraintStart_toEndOf="@+id/quickAddTextView"
         app:srcCompat="@android:drawable/ic_btn_speak_now" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="348dp"
+        android:layout_height="485dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="68dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

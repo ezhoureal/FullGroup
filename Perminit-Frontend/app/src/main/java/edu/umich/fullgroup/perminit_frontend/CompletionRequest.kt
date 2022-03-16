@@ -20,7 +20,7 @@ object TextCompleter {
         val completionRequest = CompletionRequest(prompt=prompt)
         launch {
             val completed = openAI.completion(Davinci, completionRequest)
-            return completed.choices.something // need to return the first choice given, for now
+//            return completed.choices.something // need to return the first choice given, for now
         }
     }
 }
