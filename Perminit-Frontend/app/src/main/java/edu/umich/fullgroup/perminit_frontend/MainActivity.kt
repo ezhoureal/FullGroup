@@ -22,8 +22,17 @@ class MainActivity : AppCompatActivity() {
         val e = Event(1, "test", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)
         EventStore.add(e, LocalDate.now())
 
+        // filter and sort events to display on the to-do list
+        var dataset = ArrayList<Event>()
+        for ((date, array) in EventStore.events) {
+            if (date >= LocalDate.now()) {
+                dataset += array
+            }
+        }
+        dataset.sortedWith(compareBy({ it.date }, { it.startTime }))
+
         val recyclerView = findViewById<RecyclerView>(R.id.eventList)
-        recyclerView.adapter = EventAdapter(this, ArrayList())
+        recyclerView.adapter = EventAdapter(this, dataset)
 
         // Use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
