@@ -99,6 +99,7 @@
         app:srcCompat="@android:drawable/ic_btn_speak_now" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/eventList"
         android:layout_width="348dp"
         android:layout_height="485dp"
         android:layout_marginTop="8dp"

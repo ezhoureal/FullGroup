@@ -2,6 +2,7 @@ package edu.umich.fullgroup.perminit_frontend
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -43,6 +44,7 @@ class AddReminder : AppCompatActivity() {
 //            event.location = location
 //        }
         EventStore.add(event, date)
+        Log.d("submit", "event added")
         finish()
     }
 

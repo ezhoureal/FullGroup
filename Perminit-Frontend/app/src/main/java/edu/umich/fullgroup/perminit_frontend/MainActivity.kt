@@ -13,15 +13,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todo_list)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.RecyclerView)
+        EventStore.load(applicationContext)
+        PerMinitStore.load()
+        Log.d("data", EventStore.events.toString())
+
+        val recyclerView = findViewById<RecyclerView>(R.id.eventList)
         recyclerView.adapter = EventAdapter(this, ArrayList())
 
         // Use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true)
-
-        EventStore.load(applicationContext)
-        PerMinitStore.load()
-        Log.d("data", EventStore.events.toString())
     }
 }
