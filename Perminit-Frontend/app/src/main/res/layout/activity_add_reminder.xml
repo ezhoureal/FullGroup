@@ -25,6 +25,8 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="16dp"
         android:text="Save"
+        android:clickable="true"
+        android:onClick ="onSubmit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cancel"
         app:layout_constraintStart_toStartOf="parent" />
@@ -36,6 +38,8 @@
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="16dp"
         android:text="Cancel"
+        android:clickable="true"
+        android:onClick ="cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

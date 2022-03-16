@@ -2,6 +2,9 @@ package edu.umich.fullgroup.perminit_frontend
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import edu.umich.fullgroup.perminit_frontend.databinding.ActivityAddReminderBinding
 import java.lang.Exception
@@ -18,7 +21,7 @@ class AddReminder : AppCompatActivity() {
     }
 
     // called when submit button is pushed
-    fun onSubmit() {
+    fun onSubmit(v: View) {
         // get data from view
         val date: LocalDate = LocalDate.parse(view.editTextDate.text)
         val startTime = LocalTime.parse(view.editTextStartTime.text)
@@ -40,5 +43,10 @@ class AddReminder : AppCompatActivity() {
 //            event.location = location
 //        }
         EventStore.add(event, date)
+        finish()
+    }
+
+    fun cancel(v: View) {
+        finish()
     }
 }
