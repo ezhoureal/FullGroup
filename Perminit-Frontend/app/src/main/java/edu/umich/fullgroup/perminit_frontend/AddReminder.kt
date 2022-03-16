@@ -35,7 +35,7 @@ class AddReminder : AppCompatActivity() {
             return
         }
 
-        var event = Event(EventStore.id++, title, date, startTime, endTime, perMinitId)
+        var event = Event(EventStore.id_idx++, title, date, startTime, endTime, perMinitId)
 //        if (view.notes) {
 //            event.notes = notes
 //        }
