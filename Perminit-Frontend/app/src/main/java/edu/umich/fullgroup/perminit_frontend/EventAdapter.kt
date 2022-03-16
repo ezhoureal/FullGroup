@@ -33,6 +33,7 @@ class EventAdapter(
         val adapterLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.todo_item, parent, false)
 
+        Log.d("data", EventStore.events.toString())
         // filter and sort events to display on the to-do list
         for ((date, array) in EventStore.events) {
             if (date >= LocalDate.now()) {

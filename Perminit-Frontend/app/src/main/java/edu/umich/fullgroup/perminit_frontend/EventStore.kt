@@ -28,6 +28,7 @@ object EventStore {
 
     // load events from local storage
     fun load(context: Context) {
+        Log.d("store", "start loading")
         try {
             val bufferedReader: BufferedReader = File("eventData").bufferedReader()
             val inputString = bufferedReader.use { it.readText() }
