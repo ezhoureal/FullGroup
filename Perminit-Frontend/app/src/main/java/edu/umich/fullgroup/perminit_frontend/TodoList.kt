@@ -13,7 +13,6 @@ class TodoList : AppCompatActivity() {
         setContentView(R.layout.activity_todo_list)
 
         val recyclerView = findViewById<RecyclerView>(R.id.RecyclerView)
-        recyclerView.adapter = EventAdapter(this, EventStore.events)
 
         // Use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
