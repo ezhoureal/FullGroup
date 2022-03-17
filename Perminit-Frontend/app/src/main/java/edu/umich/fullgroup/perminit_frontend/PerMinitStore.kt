@@ -10,7 +10,7 @@ import java.io.IOException
 import java.time.LocalDate
 
 object PerMinitStore {
-    var minits = ArrayList<PerMinit>()
+    var minits = HashMap<String, PerMinit>()
     // store PerMinit to local storage
     fun store(context: Context) {
         val data = Gson().toJson(this.minits)
@@ -24,6 +24,6 @@ object PerMinitStore {
     // load PerMinits from local storage
     fun load(context: Context) {
         val jsonFileString = getJsonDataFromAsset(context, "minitData.json")
-        this.minits = Gson().fromJson(jsonFileString, ArrayList<PerMinit>()::class.java)
+        this.minits = Gson().fromJson(jsonFileString, HashMap<String, PerMinit>()::class.java)
     }
 }
