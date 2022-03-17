@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_todo_list)
 
         EventStore.load(applicationContext)
-        PerMinitStore.load()
+        PerMinitStore.load(applicationContext)
         Log.d("data", EventStore.events.toString())
 
         val e = Event(1, "test", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)

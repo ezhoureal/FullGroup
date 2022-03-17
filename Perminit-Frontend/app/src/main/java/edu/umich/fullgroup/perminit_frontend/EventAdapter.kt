@@ -23,6 +23,7 @@ class EventAdapter(
     class EventViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.eventName)
         val time: TextView = view.findViewById(R.id.eventTime)
+        val minitText: TextView = view.findViewById(R.id.minitText)
     }
 
     /**
@@ -45,6 +46,7 @@ class EventAdapter(
         val item = dataset[position]
         holder.name.text = item.title
         holder.time.text = item.startTime.toString()
+        holder.minitText.text = item.reminderText
     }
 
     /**

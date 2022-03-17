@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import com.google.gson.Gson
+import getJsonDataFromAsset
 import java.io.*
 import java.time.LocalDate
 import java.time.LocalTime
@@ -18,10 +19,15 @@ object EventStore {
     fun store(context: Context) {
         val data = Gson().toJson(this.events)
         try {
-            File("eventData").writeText(data)
+            var eventData = File(context.getFilesDir(), "eventData.json")
+            eventData.writeText(data)
         } catch (e: IOException) {
             Log.e("Save on close", "File write failed: $e")
         }
+        /*
+        PrintWriter(FileWriter("eventData.json", Charset.defaultCharset()))
+            .use { it.write(data.toString()) }
+        */
         // store id
         val preferences = context.getSharedPreferences("state", Context.MODE_PRIVATE)
         preferences.edit().putInt("id", this.id).apply()
@@ -29,14 +35,19 @@ object EventStore {
 
     // load events from local storage
     fun load(context: Context) {
-        Log.d("store", "start loading")
-        try {
-            val bufferedReader: BufferedReader = File("eventData").bufferedReader()
-            val inputString = bufferedReader.use { it.readText() }
-            this.events = Gson().fromJson(inputString, HashMap<LocalDate, ArrayList<Event>>()::class.java)
-        } catch (e: IOException){
-            Log.e("load on startup", "File read fiailed: $e")
-        }
+        val jsonFileString = getJsonDataFromAsset(context, "eventData.json")
+        this.events = Gson().fromJson(jsonFileString, HashMap<LocalDate, ArrayList<Event>>()::class.java)
+        // Log.d("store", "start loading")
+        // try {
+        //     var eventData = File(context.getFilesDir(), "eventData.json")
+        //     if (eventData.length() != 0L) {
+        //         val bufferedReader: BufferedReader = eventData.bufferedReader()
+        //         val inputString = bufferedReader.use { it.readText() }
+        //         this.events = Gson().fromJson(inputString, HashMap<LocalDate, ArrayList<Event>>()::class.java)
+        //     }
+        // } catch (e: IOException){
+        //     Log.e("load on startup", "File read failed: $e")
+        // }
         // load id
         val preferences = context.getSharedPreferences("state", Context.MODE_PRIVATE)
         this.id = preferences.getInt("id", 0)

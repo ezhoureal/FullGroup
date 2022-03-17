@@ -20,7 +20,7 @@ class TodoList : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
 
         EventStore.load(applicationContext)
-        PerMinitStore.load()
+        PerMinitStore.load(applicationContext)
     }
 
 

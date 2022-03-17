@@ -16,15 +16,11 @@ object TextCompleter {
         }
     }
 
-    fun completeText(prompt: String) = runBlocking {
+    fun completeText(prompt: String) : String {
         val completionRequest = CompletionRequest(prompt=prompt)
-        launch {
-            val completed = openAI.completion(Davinci, completionRequest)
-//            return completed.choices.something // need to return the first choice given, for now
+        val completed = runBlocking {
+            openAI.completion(Davinci, completionRequest)
         }
+        return completed.choices[0].text
     }
-}
-
-fun main() {
-    TextCompleter.completeText("Hello, world! My name is")
 }
