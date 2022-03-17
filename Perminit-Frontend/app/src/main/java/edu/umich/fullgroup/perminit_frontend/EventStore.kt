@@ -1,19 +1,17 @@
 package edu.umich.fullgroup.perminit_frontend
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.util.Log
 import com.google.gson.Gson
 import getJsonDataFromAsset
 import java.io.*
 import java.time.LocalDate
-import java.time.LocalTime
 
 
 object EventStore {
     var events = HashMap<LocalDate, ArrayList<Event>>()
     var list = ArrayList<Event>()
-    var id = 0
+    var id_idx = 0
 
     // store events to local storage
     fun store(context: Context) {
@@ -30,7 +28,7 @@ object EventStore {
         */
         // store id
         val preferences = context.getSharedPreferences("state", Context.MODE_PRIVATE)
-        preferences.edit().putInt("id", this.id).apply()
+        preferences.edit().putInt("id", this.id_idx).apply()
     }
 
     // load events from local storage
@@ -50,7 +48,7 @@ object EventStore {
         // }
         // load id
         val preferences = context.getSharedPreferences("state", Context.MODE_PRIVATE)
-        this.id = preferences.getInt("id", 0)
+        this.id_idx = preferences.getInt("id", 0)
 
         updateList()
     }

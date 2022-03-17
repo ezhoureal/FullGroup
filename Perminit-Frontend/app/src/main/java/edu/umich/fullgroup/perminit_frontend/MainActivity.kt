@@ -1,5 +1,6 @@
 package edu.umich.fullgroup.perminit_frontend
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -39,5 +40,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
     } //onActivityResult
+
+    override fun onPause() {
+        super.onPause()
+        EventStore.store(applicationContext)
+        PerMinitStore.store()
+    }
 
 }
