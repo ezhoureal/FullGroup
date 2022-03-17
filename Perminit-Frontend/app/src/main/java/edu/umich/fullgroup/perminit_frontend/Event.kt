@@ -1,5 +1,6 @@
 package edu.umich.fullgroup.perminit_frontend
 
+import android.util.Log
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -24,7 +25,7 @@ class Event (val id: Int, val title: String, var date: LocalDate,
     Reminder:
      */
     fun generate_reminder(): String {
-        var minit: PerMinit = PerMinitStore.minits.get(perMinitId)
+        val minit = PerMinitStore.minits[perMinitId]
         val uncompleted = minit.examples.format(title)
         val completed = TextCompleter.completeText(uncompleted)
         return completed.split("\n", limit=1)[0]

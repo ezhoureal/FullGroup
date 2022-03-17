@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         PerMinitStore.load(applicationContext)
         Log.d("data", EventStore.events.toString())
 
-        val e = Event(1, "test", LocalDate.now(), LocalTime.now(), LocalTime.now(), "0")
+        val e = Event(1, "test", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)
         EventStore.add(e, LocalDate.now())
 
         recyclerView = findViewById<RecyclerView>(R.id.eventList)
