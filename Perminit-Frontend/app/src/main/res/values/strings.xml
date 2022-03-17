@@ -36,6 +36,8 @@
 
     <!-- String for Notifications  -->
     <string name="event_notification_channel_id" translatable="false">event_notification_channel</string>
+    <string name="event_notification_channel_name" translatable="true">Event</string>
+    <string name="event_notification_channel_description" translatable="true">Channel for sending events</string>
     <string name="notification_title">Upcoming Event</string>
 
 </resources>
