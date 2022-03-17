@@ -33,4 +33,9 @@
     <string name="minit_msg">Minit Msg</string>
     <string name="minit">Minit</string>
     <string name="edit_btn">Edit event</string>
+
+    <!-- String for Notifications  -->
+    <string name="event_notification_channel_id" translatable="false">event_notification_channel</string>
+    <string name="notification_title">Upcoming Event</string>
+
 </resources>
