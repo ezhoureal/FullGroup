@@ -102,7 +102,7 @@ class AddReminder : AppCompatActivity() {
 
     fun select_1(viewk: View){
 
-        minit_selected=1
+        minit_selected=0
 
 
         view.chooseText.setText("Selected " + view.pm1Name.text)
@@ -114,13 +114,13 @@ class AddReminder : AppCompatActivity() {
 
     }
     fun select_2(viewk :View){
-        minit_selected=2
+        minit_selected=1
         view.chooseText.setText("Selected " + view.pm2Name.text)
 
     }
     fun select_3(viewk:View){
         view.chooseText.setText("Selected " + view.pm3Name.text)
-        minit_selected=3
+        minit_selected=2
 
     }
 
