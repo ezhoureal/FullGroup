@@ -38,6 +38,7 @@ class AddReminder : AppCompatActivity() {
         val intent = Intent(applicationContext, NotificationReceiver::class.java)
         val title = "Upcoming Event"
         val message = view.NameField.text.toString()
+        println("message $message")
         // TODO: are 2 lines below necessary?
         intent.putExtra(titleExtra, title)
         intent.putExtra(messageExtra, message)
@@ -51,13 +52,18 @@ class AddReminder : AppCompatActivity() {
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val time = getTime()
+        println("time: $time")
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
             time,
             pendingIntent
         )
+        val pendingIntentContents = pendingIntent.describeContents()
+        println("pendingContents: $pendingIntent")
+        val nextAlarm = alarmManager.getNextAlarmClock()
+        println("next alarm: $nextAlarm")
         // showAlert() is for testing purposes
-        ////showAlert(time, title, message)
+//        showAlert(time, title, message)
     }
 
     private fun showAlert(time: Long, title: String, message: String) {
@@ -80,7 +86,11 @@ class AddReminder : AppCompatActivity() {
         val dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy")
         val date = LocalDate.parse(view.editTextDate.text, dateFormat)
         val startTime = LocalTime.parse(view.editTextStartTime.text)
-
+        println(date.year)
+        println(date.monthValue)
+        println(date.dayOfMonth)
+        println(startTime.hour)
+        println(startTime.minute)
         val calendar = Calendar.getInstance()
         calendar.set(date.year, date.monthValue, date.dayOfMonth, startTime.hour, startTime.minute)
         return calendar.timeInMillis
@@ -159,17 +169,17 @@ class AddReminder : AppCompatActivity() {
 
         //there is an edgecase of events at 1am  but we'll fix that in mvp
         //
-        if (startstr_init[0] > '1'){
-            startstr_final = "0"
-        }
+//        if (startstr_init[0] > '1'){
+//            startstr_final = "0"
+//        }
 
-        if (endstr_init[0] > '1'){
-            endstr_final = "0"
-        }
-
-        if (date_init [0] > '1'){
-            date_final="0"
-        }
+//        if (endstr_init[0] > '1'){
+//            endstr_final = "0"
+//        }
+//
+//        if (date_init [0] > '1'){
+//            date_final="0"
+//        }
 
         startstr_final += startstr_init.toString()
         endstr_final += endstr_init.toString()
@@ -192,7 +202,7 @@ class AddReminder : AppCompatActivity() {
         var endTime = LocalTime.parse(endstr_final)
 
         println (startTime.toString())
-        println (endTime.toString())
+        println (endTime.toString())    //TODO: endTime currently equals startTime
         println (date.toString())
 
         //val date=LocalDate.now()
