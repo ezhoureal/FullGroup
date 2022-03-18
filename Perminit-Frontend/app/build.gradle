@@ -17,7 +17,7 @@ android {
 
         def Properties localProperties = new Properties()
         localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
-        buildConfigField "String", "API_KEY", localProperties['OPENAI_API_KEY']
+//        buildConfigField "String", "API_KEY", localProperties['OPENAI_API_KEY']
     }
 
     buildFeatures {
