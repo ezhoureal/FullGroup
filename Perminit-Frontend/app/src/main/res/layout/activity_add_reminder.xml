@@ -74,48 +74,56 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/choosetext"
+        android:id="@+id/chooseText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:text="Choose your PerMinit!"
+
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <ImageView
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/pm_1_img"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:src="@drawable/ic_minit1"
         android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toStartOf="@+id/pm_2_img"
+        android:onClick="select_1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choosetext"
+        app:layout_constraintTop_toBottomOf="@+id/chooseText"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
         android:id="@+id/pm_2_img"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:src="@drawable/ic_minit2"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
+        android:onClick="select_2"
         app:layout_constraintEnd_toStartOf="@+id/pm_3_img"
         app:layout_constraintStart_toEndOf="@+id/pm_1_img"
-        app:layout_constraintTop_toBottomOf="@+id/choosetext"
+        app:layout_constraintTop_toBottomOf="@+id/chooseText"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
         android:id="@+id/pm_3_img"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:onClick="select_3"
+        android:src="@drawable/ic_minit3"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toEndOf="@+id/pm_2_img"
-        app:layout_constraintTop_toBottomOf="@id/choosetext"
+        app:layout_constraintTop_toBottomOf="@id/chooseText"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -123,7 +131,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="TextView"
+        android:text="@string/minit_1_name"
         app:layout_constraintStart_toStartOf="@+id/pm_1_img"
         app:layout_constraintTop_toBottomOf="@+id/pm_1_img" />
 
@@ -132,16 +140,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/pm_2_img"
+        android:text="@string/minit_2_name"
         app:layout_constraintTop_toBottomOf="@+id/pm_2_img" />
 
     <TextView
-        android:id="@+id/pm_text_3"
+        android:id="@+id/pm_3_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:text="TextView"
+        android:text="@string/minit_3_name"
         app:layout_constraintStart_toStartOf="@+id/pm_3_img"
         app:layout_constraintTop_toBottomOf="@+id/pm_3_img" />
 
@@ -149,16 +157,16 @@
         android:id="@+id/editTextDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/Save"
+        app:layout_constraintBottom_toTopOf="@+id/descriptionbox"
         app:layout_constraintStart_toStartOf="@+id/Save" />
 
     <EditText
         android:id="@+id/editTextEndTime"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:ems="10"
         android:inputType="time"
@@ -201,5 +209,14 @@
         android:text="Start Time"
         app:layout_constraintBottom_toTopOf="@+id/editTextStartTime"
         app:layout_constraintStart_toStartOf="@+id/editTextStartTime" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/descriptionbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="description"
+        app:layout_constraintBottom_toTopOf="@+id/Save"
+        tools:layout_editor_absoluteX="10dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
