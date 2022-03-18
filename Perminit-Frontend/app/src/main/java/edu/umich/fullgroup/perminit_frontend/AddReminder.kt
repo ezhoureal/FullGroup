@@ -26,12 +26,11 @@ class AddReminder : AppCompatActivity() {
         view = ActivityAddReminderBinding.inflate(layoutInflater)
         setContentView(view.root)
 
-        //createNotificationChannel()
+        createNotificationChannel()
         //view.Save.setOnClickListener { scheduleNotification() }
 
     }
 
-    /*
 
     private fun scheduleNotification() {
         val intent = Intent(applicationContext, NotificationReceiver::class.java)
@@ -95,8 +94,6 @@ class AddReminder : AppCompatActivity() {
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
     }
-
-     */
 
     //maybe should be a default
     var minit_selected = -1
@@ -212,6 +209,10 @@ class AddReminder : AppCompatActivity() {
 //            event.location = location
 //        }
         EventStore.add(event, date)
+
+        scheduleNotification()
+
+        
         val returnIntent = Intent()
         setResult(RESULT_OK, returnIntent);
         finish()
