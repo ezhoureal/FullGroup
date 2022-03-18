@@ -32,7 +32,9 @@ class AddReminder : AppCompatActivity() {
     }
 
 
+
     private fun scheduleNotification() {
+        println("in scheduleNotification()")
         val intent = Intent(applicationContext, NotificationReceiver::class.java)
         val title = "Upcoming Event"
         val message = view.NameField.text.toString()
@@ -59,6 +61,7 @@ class AddReminder : AppCompatActivity() {
     }
 
     private fun showAlert(time: Long, title: String, message: String) {
+        println("in showAlert()")
         val date = Date(time)
         val dateFormat = android.text.format.DateFormat.getLongDateFormat(applicationContext)
         val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
@@ -207,7 +210,7 @@ class AddReminder : AppCompatActivity() {
         EventStore.add(event, date)
 
 
-        
+
         val returnIntent = Intent()
         setResult(RESULT_OK, returnIntent);
         finish()
