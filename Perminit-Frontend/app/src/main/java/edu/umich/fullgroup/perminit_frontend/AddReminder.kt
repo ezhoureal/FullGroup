@@ -18,15 +18,19 @@ import java.util.*
 
 class AddReminder : AppCompatActivity() {
     private lateinit var view: ActivityAddReminderBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         view = ActivityAddReminderBinding.inflate(layoutInflater)
         setContentView(view.root)
 
-        createNotificationChannel()
-        view.Save.setOnClickListener { scheduleNotification() }
+        //createNotificationChannel()
+        //view.Save.setOnClickListener { scheduleNotification() }
 
     }
+
+    /*
 
     private fun scheduleNotification() {
         val intent = Intent(applicationContext, NotificationReceiver::class.java)
@@ -91,6 +95,8 @@ class AddReminder : AppCompatActivity() {
         notificationManager.createNotificationChannel(channel)
     }
 
+     */
+
     //maybe should be a default
     var minit_selected = 0
 
@@ -127,6 +133,9 @@ class AddReminder : AppCompatActivity() {
         val endTime = LocalTime.parse(view.editTextEndTime.text)
         val title = view.NameField.text.toString()
         val perMinitId = minit_selected
+
+
+        //val date=LocalDate.now()
 
         val description = view.descriptionbox.text.toString()
 
