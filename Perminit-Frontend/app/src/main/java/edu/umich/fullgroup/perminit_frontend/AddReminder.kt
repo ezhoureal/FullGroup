@@ -55,7 +55,7 @@ class AddReminder : AppCompatActivity() {
             pendingIntent
         )
         // showAlert() is for testing purposes
-        showAlert(time, title, message)
+        ////showAlert(time, title, message)
     }
 
     private fun showAlert(time: Long, title: String, message: String) {
@@ -124,6 +124,7 @@ class AddReminder : AppCompatActivity() {
 
     // called when submit button is pushed
     fun onSubmit(v: View) {
+        scheduleNotification()
 
         val title = view.NameField.text.toString()
         // get data from view
@@ -187,14 +188,9 @@ class AddReminder : AppCompatActivity() {
         var startTime = LocalTime.parse(startstr_final)
         var endTime = LocalTime.parse(endstr_final)
 
-
-
-
         println (startTime.toString())
         println (endTime.toString())
         println (date.toString())
-
-
 
         //val date=LocalDate.now()
 
@@ -210,7 +206,6 @@ class AddReminder : AppCompatActivity() {
 //        }
         EventStore.add(event, date)
 
-        scheduleNotification()
 
         
         val returnIntent = Intent()

@@ -178,7 +178,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:text="Date"
+        android:text="Date (Format: MM/DD/YYYY)"
         app:layout_constraintBottom_toTopOf="@+id/editTextDate"
         app:layout_constraintStart_toStartOf="@+id/editTextDate" />
 
@@ -187,7 +187,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:text="End Time"
+        android:text="End Time (Format: HH:MM 24 hour time)"
         app:layout_constraintBottom_toTopOf="@+id/editTextEndTime"
         app:layout_constraintStart_toStartOf="@+id/editTextEndTime" />
 
@@ -206,7 +206,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:text="Start Time"
+        android:text="Start Time (Format: HH:MM 24 hour time)"
         app:layout_constraintBottom_toTopOf="@+id/editTextStartTime"
         app:layout_constraintStart_toStartOf="@+id/editTextStartTime" />
 

@@ -26,7 +26,7 @@
         android:clickable="true"
         android:contentDescription="@string/add_event_btn"
         android:onClick="addEvent"
-        app:backgroundTint="#03A9F4"
+        app:backgroundTint="#F44336"
         app:layout_constraintBottom_toBottomOf="@+id/todoButton"
         app:layout_constraintStart_toEndOf="@+id/calendarButton"
         app:rippleColor="#03A9F4"
