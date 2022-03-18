@@ -45,7 +45,7 @@ class EventAdapter(
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         val item = dataset[position]
         holder.name.text = item.title
-        holder.time.text = item.startTime.toString()
+        holder.time.text = item.date.toString() + " " + item.startTime.toString()
         holder.minitText.text = item.reminderText
     }
 
