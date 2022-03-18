@@ -8,8 +8,8 @@ import java.time.LocalTime
 class Event (val id: Int, val title: String, var date: LocalDate,
                   var startTime: LocalTime, var endTime: LocalTime,
                   var perMinitId: Int) {
-    // lateinit var notes : String
-    // lateinit var location : String
+     lateinit var notes : String
+     lateinit var location : String
     var reminderText = generate_reminder()
 
     /* Example prompt:
@@ -28,6 +28,7 @@ class Event (val id: Int, val title: String, var date: LocalDate,
         val minit = PerMinitStore.minits[perMinitId]
         val uncompleted = minit.examples.format(title)
         val completed = TextCompleter.completeText(uncompleted)
-        return completed.split("\n", limit=1)[0]
+        val message = completed.split("\n", limit=1)[0]
+        return "%s:%s".format(minit.name, message)
     }
 }
