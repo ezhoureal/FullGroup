@@ -11,10 +11,8 @@ import android.util.Log
 import kotlinx.coroutines.*
 
 object TextCompleter {
-//    val prop = Properties().apply {
-//        load(FileInputStream(File(System.getProperty("user.dir"), "local.properties")))
-//    }
-    val openAI = OpenAI(BuildConfig.API_KEY)
+//    val openAI = OpenAI(BuildConfig.API_KEY)
+    val openAI = OpenAI("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")
     
     fun onCreate() = runBlocking {
         launch {
