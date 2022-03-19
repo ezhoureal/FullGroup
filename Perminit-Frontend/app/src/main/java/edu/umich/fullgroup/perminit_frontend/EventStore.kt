@@ -1,7 +1,10 @@
 package edu.umich.fullgroup.perminit_frontend
 
 import android.content.Context
+import android.util.Log
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -16,23 +19,26 @@ object EventStore {
     var id_idx = 0
 
     // store events to local storage
-    fun store(context: Context) {
-        var f = File(context.filesDir, "eventData.json")
-        if (!f.exists()) {
-            f.createNewFile()
-        }
-
-        var data = ""
-        for ((date, list) in EventStore.events) {
-            for (event in list) {
-                data += Json.encodeToString(event) + "\n"
+    suspend fun store(context: Context) {
+        withContext(Dispatchers.IO) {              // Dispatchers.IO (main-safety block)
+            var f = File(context.filesDir, "eventData.json")
+            if (!f.exists()) {
+                f.createNewFile()
             }
-        }
-        f.writeText(data)
 
-        // store id
-        val preferences = context.getSharedPreferences("state", Context.MODE_PRIVATE)
-        preferences.edit().putInt("id", this.id_idx).apply()
+            var data = ""
+            for ((date, list) in EventStore.events) {
+                for (event in list) {
+                    data += Json.encodeToString(event) + "\n"
+                }
+            }
+
+            f.writeText(data)
+
+            // store id
+            val preferences = context.getSharedPreferences("state", Context.MODE_PRIVATE)
+            preferences.edit().putInt("id", id_idx).apply()
+        }
     }
 
     // load events from local storage

@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
 import getJsonDataFromAsset
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -15,17 +17,19 @@ import java.time.LocalDate
 object PerMinitStore {
     var minits = ArrayList<PerMinit>()
     // store PerMinit to local storage
-    fun store(context: Context) {
-        var f = File(context.filesDir, "minitData.json")
-        if (!f.exists()) {
-            f.createNewFile()
-        }
+    suspend fun store(context: Context) {
+        withContext(Dispatchers.IO) {              // Dispatchers.IO (main-safety block)
+            var f = File(context.filesDir, "minitData.json")
+            if (!f.exists()) {
+                f.createNewFile()
+            }
 
-        var data = ""
-        for (minit in minits) {
-            data += Json.encodeToString(minit) + "\n"
+            var data = ""
+            for (minit in minits) {
+                data += Json.encodeToString(minit) + "\n"
+            }
+            f.writeText(data)
         }
-        f.writeText(data)
     }
 
     // load PerMinits from local storage
