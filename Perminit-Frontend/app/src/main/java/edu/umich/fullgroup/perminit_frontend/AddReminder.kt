@@ -218,6 +218,8 @@ class AddReminder : AppCompatActivity() {
 //            event.location = location
 //        }
         EventStore.add(event, date)
+        // add event to list
+        EventStore.updateList()
 
 
 

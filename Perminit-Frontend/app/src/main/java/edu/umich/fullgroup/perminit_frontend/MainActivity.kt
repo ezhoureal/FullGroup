@@ -22,10 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         EventStore.load(applicationContext)
         PerMinitStore.load(applicationContext)
-        Log.d("data", EventStore.events.toString())
 
-        val e = Event(1, "Record 441 Video", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)
-        EventStore.add(e, LocalDate.now())
 
         recyclerView = findViewById<RecyclerView>(R.id.eventList)
         recyclerView.adapter = EventAdapter(this, EventStore.list)

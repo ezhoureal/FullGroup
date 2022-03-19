@@ -1,15 +1,28 @@
 package edu.umich.fullgroup.perminit_frontend
 
 import android.util.Log
+import kotlinx.serialization.KSerializer
 import java.time.LocalDate
 import java.time.LocalTime
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
+import java.util.*
 
-
-class Event (val id: Int, val title: String, var date: LocalDate,
-                  var startTime: LocalTime, var endTime: LocalTime,
+@Serializable
+class Event (val id: Int,
+             val title: String,
+             @Serializable(with = LocalDateSerializer::class)
+             var date: LocalDate,
+             @Serializable(with = LocalTimeSerializer::class)
+             var startTime: LocalTime,
+             @Serializable(with = LocalTimeSerializer::class)
+             var endTime: LocalTime,
                   var perMinitId: Int) {
-     lateinit var notes : String
-     lateinit var location : String
+    var notes = ""
+    var location = ""
     var reminderText = generate_reminder()
 
     /* Example prompt:
@@ -30,5 +43,29 @@ class Event (val id: Int, val title: String, var date: LocalDate,
         val completed = TextCompleter.completeText(uncompleted)
         val message = completed.split("\n", limit=1)[0]
         return "%s:%s".format(minit.name, message)
+    }
+}
+
+object LocalDateSerializer : KSerializer<LocalDate> {
+    override val descriptor = PrimitiveSerialDescriptor("LocalDate", PrimitiveKind.STRING)
+
+    override fun deserialize(decoder: Decoder): LocalDate {
+        return LocalDate.parse(decoder.decodeString())
+    }
+
+    override fun serialize(encoder: Encoder, value: LocalDate) {
+        encoder.encodeString(value.toString())
+    }
+}
+
+object LocalTimeSerializer : KSerializer<LocalTime> {
+    override val descriptor = PrimitiveSerialDescriptor("LocalTime", PrimitiveKind.STRING)
+
+    override fun deserialize(decoder: Decoder): LocalTime {
+        return LocalTime.parse(decoder.decodeString())
+    }
+
+    override fun serialize(encoder: Encoder, value: LocalTime) {
+        encoder.encodeString(value.toString())
     }
 }
