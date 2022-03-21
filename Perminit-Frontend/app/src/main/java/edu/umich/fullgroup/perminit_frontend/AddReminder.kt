@@ -157,19 +157,17 @@ class AddReminder : AppCompatActivity() {
         var endstr_final =""
         var date_final =""
 
-        //there is an edgecase of events at 1am  but we'll fix that in mvp
-        //
+/*
         if (startstr_init[0] > '1'){
             startstr_final = "0"
         }
-
         if (endstr_init[0] > '1'){
             endstr_final = "0"
         }
-
         if (date_init [0] > '1'){
             date_final="0"
         }
+ */
 
         startstr_final += startstr_init.toString()
         endstr_final += endstr_init.toString()
