@@ -15,7 +15,7 @@ import java.time.LocalTime
 
 object EventStore {
     var events = HashMap<LocalDate, ArrayList<Event>>()
-    var list = ArrayList<Event>()
+    var list = mutableListOf<Event>()
     var id_idx = 0
 
     // store events to local storage
@@ -79,11 +79,10 @@ object EventStore {
         list.clear()
         // filter and sort events to display on the to-do list
         for ((date, array) in EventStore.events) {
-//            if (date >= LocalDate.now()) {
-//                list += array
-//            }
-            list += array
+            if (date >= LocalDate.now()) {
+                list += array
+            }
         }
-        list.sortedWith(compareBy({ it.date }, { it.startTime }))
+        list.sortBy{ it.date }
     }
 }

@@ -160,7 +160,7 @@ class AddReminder : AppCompatActivity() {
 
         //make it a little less annoying.
         var startstr_init = view.editTextStartTime.text
-        var endstr_init = view.editTextStartTime.text
+        var endstr_init = view.editTextEndTime.text
         var date_init = view.editTextDate.text
 
         var startstr_final = ""
@@ -211,12 +211,7 @@ class AddReminder : AppCompatActivity() {
 
 
         var event = Event(EventStore.id_idx++, title, date, startTime, endTime, perMinitId)
-//        if (view.notes) {
-//            event.notes = notes
-//        }
-//        if (location) {
-//            event.location = location
-//        }
+        event.notes = description
         EventStore.add(event, date)
         // add event to list
         EventStore.updateList()

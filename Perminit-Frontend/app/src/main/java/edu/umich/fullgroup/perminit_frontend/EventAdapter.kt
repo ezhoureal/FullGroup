@@ -1,24 +1,24 @@
 package edu.umich.fullgroup.perminit_frontend
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
-import java.time.LocalDate
+
 
 /**
  * Adapter for the [RecyclerView] in [To-do List]. Displays [events] data object.
  */
 class EventAdapter(
     private val context: Context,
-    private val dataset: ArrayList<Event>
+    private val dataset: MutableList<Event>
 ) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
     // Provide a reference to the views for each data item
@@ -57,7 +57,7 @@ class EventAdapter(
         holder.editButton.setOnClickListener {
             val intent = Intent(context, EditEvent()::class.java)
             intent.putExtra("EVENT_ID", item.id)
-            context.startActivity(intent)
+            (context as Activity).startActivityForResult(intent, 1)
         }
     }
 
