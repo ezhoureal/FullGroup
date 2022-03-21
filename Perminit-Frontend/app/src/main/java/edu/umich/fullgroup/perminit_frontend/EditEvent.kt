@@ -7,5 +7,6 @@ class EditEvent : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_event)
+        val event_id = intent.extras?.get("EVENT_ID")
     }
 }

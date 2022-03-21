@@ -56,7 +56,7 @@ object EventStore {
                 print(e)
             }
         } else {
-            val e = Event(1, "Record 441 Video", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)
+            val e = Event(-1, "Record 441 Video", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)
             this.add(e, LocalDate.now())
             this.updateList()
         }

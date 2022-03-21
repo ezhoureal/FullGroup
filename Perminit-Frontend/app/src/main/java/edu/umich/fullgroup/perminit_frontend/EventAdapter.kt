@@ -1,11 +1,15 @@
 package edu.umich.fullgroup.perminit_frontend
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import java.time.LocalDate
 
@@ -20,10 +24,12 @@ class EventAdapter(
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder.
-    class EventViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    class EventViewHolder(@NonNull val view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.eventName)
         val time: TextView = view.findViewById(R.id.eventTime)
         val minitText: TextView = view.findViewById(R.id.minitText)
+        val minitImage: ImageView = view.findViewById(R.id.imageView)
+        val editButton: com.google.android.material.floatingactionbutton.FloatingActionButton = view.findViewById(R.id.EditEventButton)
     }
 
     /**
@@ -47,6 +53,12 @@ class EventAdapter(
         holder.name.text = item.title
         holder.time.text = item.date.toString() + " " + item.startTime.toString()
         holder.minitText.text = item.reminderText
+
+        holder.editButton.setOnClickListener {
+            val intent = Intent(context, EditEvent()::class.java)
+            intent.putExtra("EVENT_ID", item.id)
+            context.startActivity(intent)
+        }
     }
 
     /**
