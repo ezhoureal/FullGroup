@@ -78,9 +78,14 @@ object EventStore {
     fun updateList() {
         list.clear()
         // filter and sort events to display on the to-do list
-        for ((date, array) in EventStore.events) {
+        for ((date, array) in events) {
             if (date >= LocalDate.now()) {
-                list += array
+                for (e in array) {
+                    // only add completed events
+                    if (!e.completed) {
+                        list.add(e)
+                    }
+                }
             }
         }
         list.sortBy{ it.date }

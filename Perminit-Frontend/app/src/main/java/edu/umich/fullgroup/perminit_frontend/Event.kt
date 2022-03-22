@@ -24,6 +24,7 @@ class Event (val id: Int,
     var notes = ""
     var location = ""
     var reminderText = generate_reminder()
+    var completed = false
 
     /* Example prompt:
 
