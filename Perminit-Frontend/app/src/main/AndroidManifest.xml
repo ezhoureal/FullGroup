@@ -15,12 +15,14 @@
         <receiver android:name=".NotificationReceiver"
             android:enabled="true"/>
         <activity
-            android:name=".TodoList"
-            android:exported="false" />
-        <activity
             android:name=".AddReminder"
             android:exported="false"
             android:label="@string/title_activity_add_reminder"
+            android:theme="@style/Theme.PerminitFrontend.NoActionBar" />
+        <activity
+            android:name=".EditEvent"
+            android:exported="false"
+            android:label="@string/edit_e_title"
             android:theme="@style/Theme.PerminitFrontend.NoActionBar" />
         <activity
             android:name=".MainActivity"

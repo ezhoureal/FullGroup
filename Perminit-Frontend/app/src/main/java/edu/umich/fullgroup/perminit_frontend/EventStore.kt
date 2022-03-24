@@ -3,54 +3,68 @@ package edu.umich.fullgroup.perminit_frontend
 import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
-import getJsonDataFromAsset
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import java.io.*
 import java.time.LocalDate
+import java.time.LocalTime
 
 
 object EventStore {
     var events = HashMap<LocalDate, ArrayList<Event>>()
-    var list = ArrayList<Event>()
+    var list = mutableListOf<Event>()
     var id_idx = 0
 
     // store events to local storage
-    fun store(context: Context) {
-        val data = Gson().toJson(this.events)
-        try {
-            var eventData = File(context.getFilesDir(), "eventData.json")
-            eventData.writeText(data)
-        } catch (e: IOException) {
-            Log.e("Save on close", "File write failed: $e")
+    suspend fun store(context: Context) {
+        withContext(Dispatchers.IO) {              // Dispatchers.IO (main-safety block)
+            var f = File(context.filesDir, "eventData.json")
+            if (!f.exists()) {
+                f.createNewFile()
+            }
+
+            var data = ""
+            for ((date, list) in EventStore.events) {
+                for (event in list) {
+                    data += Json.encodeToString(event) + "\n"
+                }
+            }
+
+            f.writeText(data)
+
+            // store id
+            val preferences = context.getSharedPreferences("state", Context.MODE_PRIVATE)
+            preferences.edit().putInt("id", id_idx).apply()
         }
-        /*
-        PrintWriter(FileWriter("eventData.json", Charset.defaultCharset()))
-            .use { it.write(data.toString()) }
-        */
-        // store id
-        val preferences = context.getSharedPreferences("state", Context.MODE_PRIVATE)
-        preferences.edit().putInt("id", this.id_idx).apply()
     }
 
     // load events from local storage
     fun load(context: Context) {
-        val jsonFileString = getJsonDataFromAsset(context, "eventData.json")
-        this.events = Gson().fromJson(jsonFileString, HashMap<LocalDate, ArrayList<Event>>()::class.java)
-        // Log.d("store", "start loading")
-        // try {
-        //     var eventData = File(context.getFilesDir(), "eventData.json")
-        //     if (eventData.length() != 0L) {
-        //         val bufferedReader: BufferedReader = eventData.bufferedReader()
-        //         val inputString = bufferedReader.use { it.readText() }
-        //         this.events = Gson().fromJson(inputString, HashMap<LocalDate, ArrayList<Event>>()::class.java)
-        //     }
-        // } catch (e: IOException){
-        //     Log.e("load on startup", "File read failed: $e")
-        // }
+        var f = File(context.filesDir, "eventData.json")
+        if (f.exists()) {
+            try {
+                val data = f.readLines()
+                for (line in data) {
+                    val event = Json.decodeFromString<Event>(line)
+                    this.add(event, event.date)
+                }
+                this.updateList()
+            } catch (e:Exception) {
+                print(e)
+            }
+        } else {
+            val e = Event(-1, "Record 441 Video", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)
+            this.add(e, LocalDate.now())
+            this.updateList()
+        }
+
         // load id
         val preferences = context.getSharedPreferences("state", Context.MODE_PRIVATE)
         this.id_idx = preferences.getInt("id", 0)
 
-        updateList()
     }
 
     fun add(event: Event, date: LocalDate) {
@@ -59,8 +73,6 @@ object EventStore {
         }
         this.events[date]?.add(event)
 
-        // add event to list
-        updateList()
     }
 
     fun updateList() {
@@ -71,6 +83,6 @@ object EventStore {
                 list += array
             }
         }
-        list.sortedWith(compareBy({ it.date }, { it.startTime }))
+        list.sortBy{ it.date }
     }
 }

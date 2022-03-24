@@ -171,46 +171,44 @@
         android:ems="10"
         android:inputType="time"
         app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/endtimelabel"
-        app:layout_constraintTop_toBottomOf="@+id/endtimelabel" />
+        app:layout_constraintStart_toStartOf="@+id/editTextDate" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:text="Date (Format: MM/DD/YYYY)"
+        android:text="Date (Format: YYYY-MM-DD)"
         app:layout_constraintBottom_toTopOf="@+id/editTextDate"
-        tools:layout_editor_absoluteX="100dp" />
+        app:layout_constraintStart_toStartOf="@+id/editTextDate" />
 
     <TextView
         android:id="@+id/endtimelabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="5dp"
         android:text="End Time (Format: HH:MM 24 hour time)"
-        app:layout_constraintBottom_toTopOf="@+id/editTextStartTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/starttimelabel" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextEndTime"
+        app:layout_constraintStart_toStartOf="@+id/editTextEndTime" />
 
     <EditText
         android:id="@+id/editTextStartTime"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:ems="10"
         android:inputType="time"
-        app:layout_constraintStart_toStartOf="@+id/starttimelabel"
-        tools:layout_editor_absoluteY="386dp" />
+        app:layout_constraintBottom_toTopOf="@+id/endtimelabel"
+        app:layout_constraintStart_toStartOf="@+id/endtimelabel" />
 
     <TextView
         android:id="@+id/starttimelabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
         android:layout_marginBottom="5dp"
-        android:text="Start Time"
+        android:text="Start Time (Format: HH:MM 24 hour time)"
         app:layout_constraintBottom_toTopOf="@+id/editTextStartTime"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/editTextStartTime" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/descriptionbox"

@@ -9,7 +9,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -20,12 +25,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todo_list)
 
-        EventStore.load(applicationContext)
         PerMinitStore.load(applicationContext)
-        Log.d("data", EventStore.events.toString())
+        EventStore.load(applicationContext)
 
-        val e = Event(1, "Record 441 Video", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)
-        EventStore.add(e, LocalDate.now())
+//        val e = Event(1, "Record 441 Video", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)
+//        EventStore.add(e, LocalDate.now())
+//        EventStore.updateList()
 
         recyclerView = findViewById<RecyclerView>(R.id.eventList)
         recyclerView.adapter = EventAdapter(this, EventStore.list)
@@ -34,10 +39,6 @@ class MainActivity : AppCompatActivity() {
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true)
 
-//        createNotificationChannel(
-//            getString(R.string.event_notification_channel_id),
-//            getString(R.string.event_notification_channel_name)
-//        )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -51,8 +52,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        EventStore.store(applicationContext)
-        PerMinitStore.store(applicationContext)
+        MainScope().async { EventStore.store(applicationContext) }
+        MainScope().async { PerMinitStore.store(applicationContext) }
     }
 
 //    private fun createNotificationChannel(channelId: String, channelName: String) {
