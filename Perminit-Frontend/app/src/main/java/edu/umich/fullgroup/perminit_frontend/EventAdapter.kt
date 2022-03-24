@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
@@ -30,6 +31,7 @@ class EventAdapter(
         val minitText: TextView = view.findViewById(R.id.minitText)
         val minitImage: ImageView = view.findViewById(R.id.imageView)
         val editButton: com.google.android.material.floatingactionbutton.FloatingActionButton = view.findViewById(R.id.EditEventButton)
+        val checkBox: CheckBox = view.findViewById(R.id.eventCheck)
     }
 
     /**
@@ -49,7 +51,7 @@ class EventAdapter(
      * Replace the contents of a view (invoked by the layout manager)
      */
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
-        val item = dataset[position]
+        val item = dataset[holder.adapterPosition]
         holder.name.text = item.title
         holder.time.text = item.date.toString() + " " + item.startTime.toString()
         holder.minitText.text = item.reminderText
@@ -58,6 +60,14 @@ class EventAdapter(
             val intent = Intent(context, EditEvent()::class.java)
             intent.putExtra("EVENT_ID", item.id)
             (context as Activity).startActivityForResult(intent, 1)
+        }
+
+        holder.checkBox.setOnClickListener {
+            if (holder.checkBox.isChecked) {
+                item.completed = true
+                EventStore.list.removeAt(holder.adapterPosition)
+                this.notifyItemRemoved(holder.adapterPosition)
+            }
         }
     }
 
