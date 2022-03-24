@@ -1,22 +1,13 @@
 package edu.umich.fullgroup.perminit_frontend
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import java.time.LocalDate
-import java.time.LocalTime
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -56,6 +47,14 @@ class MainActivity : AppCompatActivity() {
         MainScope().async { PerMinitStore.store(applicationContext) }
     }
 
+    //when the submit from text box button is clicked
+
+    fun nlpSubmitTodo(view: View) {
+        val new_event  = makeEvent (findViewById<TextView>(R.id.nlpAddTodo).text.toString())
+        //todo - store it &c
+
+
+    }
 //    private fun createNotificationChannel(channelId: String, channelName: String) {
 //        // Create the NotificationChannel, but only on API 26+ because
 //        // the NotificationChannel class is new and not in the support library

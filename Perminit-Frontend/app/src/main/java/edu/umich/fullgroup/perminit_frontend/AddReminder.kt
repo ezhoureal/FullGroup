@@ -5,12 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.text.set
 import edu.umich.fullgroup.perminit_frontend.databinding.ActivityAddReminderBinding
-import java.io.Console
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -133,6 +130,12 @@ class AddReminder : AppCompatActivity() {
         view.chooseText.setText("Selected " + view.pm3Name.text)
         minit_selected=3
 
+    }
+
+    fun nlpSubmit (v: View){
+        val nlpText = view.nlpin.text.toString()
+        makeEvent(nlpText)
+        //todo: store it &c
     }
 
     // called when submit button is pushed

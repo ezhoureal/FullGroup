@@ -63,7 +63,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <EditText
-        android:id="@+id/quickAddTextView"
+        android:id="@+id/nlpAddTodo"
         android:layout_width="275dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
@@ -76,14 +76,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/voiceAddBtn"
+        android:id="@+id/submitNLP"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:onClick="nlpSubmitTodo"
         android:clickable="true"
         app:backgroundTint="#03A9F4"
-        app:layout_constraintBottom_toBottomOf="@+id/quickAddTextView"
-        app:layout_constraintEnd_toEndOf="@+id/todoButton"
-        app:srcCompat="@android:drawable/ic_btn_speak_now" />
+        app:layout_constraintBottom_toBottomOf="@+id/nlpAddTodo"
+        app:layout_constraintEnd_toEndOf="@+id/todoButton" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventList"
@@ -91,7 +91,7 @@
         android:layout_height="485dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/quickAddTextView"
+        app:layout_constraintBottom_toTopOf="@+id/nlpAddTodo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/todoPageTitle"
