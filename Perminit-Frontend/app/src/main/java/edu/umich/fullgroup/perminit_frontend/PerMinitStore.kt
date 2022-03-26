@@ -16,6 +16,12 @@ import java.time.LocalDate
 
 object PerMinitStore {
     var minits = ArrayList<PerMinit>()
+    var example_events = listOf<String>(
+        "The user has an event called \"Shovel the driveway\".",
+        "The user has an event called \"Eat a quick lunch\".",
+        "The user has an event called \"Business meeting with Joanne\"."
+    )
+
     // store PerMinit to local storage
     suspend fun store(context: Context) {
         withContext(Dispatchers.IO) {              // Dispatchers.IO (main-safety block)
@@ -60,6 +66,7 @@ object PerMinitStore {
                 "Norman is an American TV watcher who is a big fan of Fonzie. He likes sunglasses and motorcycles and thinks the user should do their tasks in the coolest way possible.\n\nThe user has an event called \"Shovel the driveway\".\nReminder: Ayy, you have to shovel the driveway today. Or invite me over, and I'll push it away with 2 quick taps. \n\nThe user has an event called \"Eat a quick lunch\".\nReminder: Ayy, grab some food or you won't be nothing but a hound dog..\n\nThe user has an event called \"Business meeting with Joanne\".\nAyy, you gotta talk business with Joanne. Don't be late, or you'll be up a creek!\n\nThe user has an event called \"%s\".\nReminder:",
                 ""
             ))
+            
             minits.add(PerMinit(
                 "Sabrina",
                 "Sabrina is an Australian poet and she knows it. She likes to rhyme, and her favorite spice is thyme. She drinks coffee and eats toffee. She wears wool and stays cool.",
@@ -67,5 +74,52 @@ object PerMinitStore {
                 ""
             ))
         }
+    }
+
+    fun generate_minit() {
+        // 1.loop from ArrayList to get every Perminit
+        // 2.convert each Perminit to a string, add index at the start 
+        // 3.send the result to the text completer for GPT-3 completion
+        // 4.save the first word in the result as the Minit's name X
+        // 5.get each saved Minit's example reminders
+        // 6.generate new example reminders for the new Minit
+        // 7.save the created Minit to our ArrayList minits
+        val uncompleted = ""
+        val list_index = 1
+        for (minit in minits) {
+            uncompleted += list_index + ". " + minit.personality + "\n"
+            list_index += 1
+        }
+        uncompleted += list_index + "."
+
+        // text = "Harry is a German shepherd who loves to play fetch..."
+        val text = TextCompleter.completeText(uncompleted)[1:]
+        val parts = text.split(" ")
+        val name = parts[0]
+        val examples = text
+        // 1.for each minit, get example, and save to example list
+        // 2.turn example list into example string for the new minit
+        val count = 0
+        for (event in example_events) {
+            val uncompleted_examples = event
+            for (minit in minits) {
+                uncompleted_examples += "\n\n" + minit.personality
+                uncompleted_examples += "\n" + minit.get_example(count)
+            }
+            uncompleted_examples += "\n\n" + text + "\nReminder:"
+
+            val exam = TextCompleter.completeText(uncompleted_examples)
+            examples += "\n\n" + event + "\nReminder:" + exam
+
+            count += 1
+        }
+        examples += "\n\nThe user has an event called \"%s\".\nReminder:"
+
+        minits.add(PerMinit(
+            name,
+            text,
+            examples,
+            ""
+        ))
     }
 }
