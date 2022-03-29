@@ -13,6 +13,7 @@ import java.io.BufferedReader
 import java.io.File
 import java.io.IOException
 import java.time.LocalDate
+import kotlin.text.split
 
 object PerMinitStore {
     var minits = ArrayList<PerMinit>()
@@ -84,24 +85,24 @@ object PerMinitStore {
         // 5.get each saved Minit's example reminders
         // 6.generate new example reminders for the new Minit
         // 7.save the created Minit to our ArrayList minits
-        val uncompleted = ""
-        val list_index = 1
+        var uncompleted = ""
+        var list_index = 1
         for (minit in minits) {
-            uncompleted += list_index + ". " + minit.personality + "\n"
+            uncompleted += "$list_index. ${minit.personality}\n"
             list_index += 1
         }
-        uncompleted += list_index + "."
+        uncompleted += "$list_index."
 
         // text = "Harry is a German shepherd who loves to play fetch..."
-        val text = TextCompleter.completeText(uncompleted)[1:]
+        val text = TextCompleter.completeText(uncompleted).drop(1)
         val parts = text.split(" ")
         val name = parts[0]
-        val examples = text
+        var examples = text
         // 1.for each minit, get example, and save to example list
         // 2.turn example list into example string for the new minit
-        val count = 0
+        var count = 0
         for (event in example_events) {
-            val uncompleted_examples = event
+            var uncompleted_examples = event
             for (minit in minits) {
                 uncompleted_examples += "\n\n" + minit.personality
                 uncompleted_examples += "\n" + minit.get_example(count)
