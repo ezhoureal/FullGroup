@@ -24,7 +24,6 @@ class CalendarEventAdapter(
     class EventViewHolder(@NonNull val view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.eventName)
         val time: TextView = view.findViewById(R.id.eventTime)
-        val minitText: TextView = view.findViewById(R.id.minitText)
     }
 
     /**
@@ -35,8 +34,6 @@ class CalendarEventAdapter(
         val adapterLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.calendar_todo_item, parent, false)
 
-        Log.d("data", EventStore.events.toString())
-
         return EventViewHolder(adapterLayout)
     }
 
@@ -46,8 +43,7 @@ class CalendarEventAdapter(
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         val item = dataset[holder.adapterPosition]
         holder.name.text = item.title
-        holder.time.text = item.startTime.toString()
-        holder.minitText.text = item.reminderText
+        holder.time.text = item.startTime.toString() + "-" + item.endTime.toString()
     }
 
     /**
