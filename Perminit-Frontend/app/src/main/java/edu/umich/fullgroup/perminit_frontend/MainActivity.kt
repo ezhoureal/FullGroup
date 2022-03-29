@@ -13,6 +13,7 @@ import kotlinx.coroutines.async
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     fun addEvent(view: View?) = startActivityForResult(Intent(this,AddReminder::class.java), 1)
+    fun toCalendar(view: View?) = startActivity(Intent(this, CalendarActivity::class.java))
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todo_list)
@@ -30,12 +31,6 @@ class MainActivity : AppCompatActivity() {
         // Use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true)
-
-        val button: Button = findViewById(R.id.calendarButton)
-        button.setOnClickListener {
-            val intent = Intent(this@MainActivity, CalendarActivity::class.java)
-            startActivity(intent)
-        }
 
     }
 
