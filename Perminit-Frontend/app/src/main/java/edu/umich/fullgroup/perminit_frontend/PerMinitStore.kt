@@ -77,7 +77,7 @@ object PerMinitStore {
         }
     }
 
-    fun generate_minit() {
+    fun generate_minit(): Int {
         // 1.loop from ArrayList to get every Perminit
         // 2.convert each Perminit to a string, add index at the start 
         // 3.send the result to the text completer for GPT-3 completion
@@ -85,6 +85,7 @@ object PerMinitStore {
         // 5.get each saved Minit's example reminders
         // 6.generate new example reminders for the new Minit
         // 7.save the created Minit to our ArrayList minits
+        // 8.return the length of the array (i.e. the new Minit's id)
         var uncompleted = ""
         var list_index = 1
         for (minit in minits) {
@@ -122,5 +123,7 @@ object PerMinitStore {
             examples,
             ""
         ))
+        
+        return minits.size
     }
 }

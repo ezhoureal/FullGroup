@@ -116,19 +116,25 @@ class AddReminder : AppCompatActivity() {
         view.chooseText.setText("Selected " + view.pm1Name.text)
 
         //R.id.
-
-
         println(minit_selected)
 
     }
+
     fun select_2(viewk :View){
         minit_selected=2
         view.chooseText.setText("Selected " + view.pm2Name.text)
 
     }
+
     fun select_3(viewk:View){
         view.chooseText.setText("Selected " + view.pm3Name.text)
         minit_selected=3
+
+    }
+
+    fun select_4(viewk:View){
+        view.chooseText.setText("Creating new Minit")
+        minit_selected=4
 
     }
 
@@ -155,6 +161,10 @@ class AddReminder : AppCompatActivity() {
         if (perMinitId == -1){
             Toast.makeText(this, "Please select a Minit", Toast.LENGTH_SHORT).show()
             return
+        }
+        else if (perMinitId == 4){  // new Minit
+            // we don't do this in select_4 to save resources
+            perMinitId = PerMinitStore.generate_minit()
         }
 
         // 0 indexing -
