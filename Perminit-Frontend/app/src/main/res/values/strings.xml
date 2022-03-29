@@ -45,4 +45,7 @@
     <string name="event_notification_channel_description" translatable="true">Channel for sending events</string>
     <string name="notification_title">Upcoming Event</string>
 
+    <!-- String for Calendar   -->
+    <string name="calendar_title">My Calendar</string>
+
 </resources>

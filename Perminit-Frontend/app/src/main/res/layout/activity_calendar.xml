@@ -6,10 +6,90 @@
     android:layout_height="match_parent"
     tools:context=".CalendarActivity">
 
-    <CalendarView
-        android:id="@+id/calendarView"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/submitNLP3"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:onClick="nlpSubmitTodo"
+        app:backgroundTint="#03A9F4"
+        app:layout_constraintBottom_toBottomOf="@+id/nlpAddTodo4"
+        app:layout_constraintEnd_toEndOf="@+id/todoButton3" />
+
+    <EditText
+        android:id="@+id/nlpAddTodo4"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="@string/quick_add"
+        app:layout_constraintBottom_toTopOf="@+id/addEventButton3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/todoButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="72dp" />
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:contentDescription="@string/todo_btn"
+        app:backgroundTint="#03A9F4"
+        app:layout_constraintBottom_toBottomOf="@+id/addEventButton3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:rippleColor="#03A9F4"
+        app:srcCompat="@android:drawable/ic_input_get"
+        tools:ignore="ImageContrastCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/calendarButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:clickable="true"
+        android:contentDescription="@string/calendar_btn"
+        app:backgroundTint="#03A9F4"
+        app:layout_constraintBottom_toBottomOf="@+id/addEventButton3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="#03A9F4"
+        app:srcCompat="@android:drawable/ic_menu_my_calendar"
+        tools:ignore="ImageContrastCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addEventButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="102dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/add_event_btn"
+        android:onClick="addEvent"
+        app:backgroundTint="#F44336"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/calendarButton4"
+        app:rippleColor="#03A9F4"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:ignore="ImageContrastCheck" />
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="369dp"
+        android:layout_height="459dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarTitle" />
+
+    <TextView
+        android:id="@+id/calendarTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/calendar_title"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
