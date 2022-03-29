@@ -3,6 +3,7 @@ package edu.umich.fullgroup.perminit_frontend
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +30,12 @@ class MainActivity : AppCompatActivity() {
         // Use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true)
+
+        val button: Button = findViewById(R.id.calendarButton)
+        button.setOnClickListener {
+            val intent = Intent(this@MainActivity, CalendarActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
