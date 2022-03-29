@@ -1,13 +1,13 @@
 package edu.umich.fullgroup.perminit_frontend
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.CalendarView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatterBuilder
 
 class CalendarActivity : AppCompatActivity() {
     var dataset = ArrayList<Event>()
@@ -22,8 +22,12 @@ class CalendarActivity : AppCompatActivity() {
 
         var calendarView = findViewById<CalendarView>(R.id.calendarView)
         calendarView.setOnDateChangeListener { calendarView, i, i2, i3 ->
-            var date = LocalDate.parse("$i-$i2-$i3")
-            dataset = EventStore.events[date]!!
+            var date = LocalDate.of(i, i2 + 1, i3)
+            if (EventStore.events[date].isNullOrEmpty()) {
+                dataset.clear()
+            } else {
+                dataset = EventStore.events[date]!!
+            }
             recyclerView.adapter?.notifyDataSetChanged()
         }
     }
