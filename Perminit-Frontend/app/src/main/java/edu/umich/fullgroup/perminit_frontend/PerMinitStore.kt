@@ -43,7 +43,7 @@ object PerMinitStore {
     fun load(context: Context) {
         var f = File(context.filesDir, "minitData.json")
 
-        if (f.exists()) {
+        if (f.exists() and f.readLines().isNotEmpty()) {
             try {
                 val data = f.readLines()
                 for (line in data) {
