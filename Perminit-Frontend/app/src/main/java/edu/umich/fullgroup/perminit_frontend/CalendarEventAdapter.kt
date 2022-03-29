@@ -33,7 +33,7 @@ class CalendarEventAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         // create a new view
         val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.todo_item, parent, false)
+            .inflate(R.layout.calendar_todo_item, parent, false)
 
         Log.d("data", EventStore.events.toString())
 
