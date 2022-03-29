@@ -22,8 +22,9 @@ class CalendarActivity : AppCompatActivity() {
 
         var calendarView = findViewById<CalendarView>(R.id.calendarView)
         calendarView.setOnDateChangeListener { calendarView, i, i2, i3 ->
-            var date = LocalDate.parse("$i3-$i2-$i")
+            var date = LocalDate.parse("$i-$i2-$i3")
             dataset = EventStore.events[date]!!
+            recyclerView.adapter?.notifyDataSetChanged()
         }
     }
 
