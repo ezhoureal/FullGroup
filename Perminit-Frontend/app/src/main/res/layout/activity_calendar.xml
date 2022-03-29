@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:clickable="true"
+        android:clickable="false"
         android:contentDescription="@string/calendar_btn"
         app:backgroundTint="#03A9F4"
         app:layout_constraintBottom_toBottomOf="@+id/addEventButton3"
@@ -75,8 +75,8 @@
 
     <CalendarView
         android:id="@+id/calendarView"
-        android:layout_width="369dp"
-        android:layout_height="459dp"
+        android:layout_width="360dp"
+        android:layout_height="379dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,4 +92,13 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/calendarMiniTodo"
+        android:layout_width="358dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
