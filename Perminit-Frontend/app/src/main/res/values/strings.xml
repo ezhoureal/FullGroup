@@ -47,5 +47,6 @@
 
     <!-- String for Calendar   -->
     <string name="calendar_title">My Calendar</string>
-
+    <string name="event_time_days">1 d</string>
+    <string name="event_loc">Event Location</string>
 </resources>
