@@ -1,14 +1,13 @@
 package edu.umich.fullgroup.perminit_frontend
 
 import android.content.Context
-import android.util.Log
-import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import java.io.*
+import java.io.File
+import java.io.FileNotFoundException
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -43,10 +42,11 @@ object EventStore {
 
     // load events from local storage
     fun load(context: Context) {
+
         var f = File(context.filesDir, "eventData.json")
-        if (f.exists()) {
-            try {
+        try {
                 val data = f.readLines()
+                try {
                 for (line in data) {
                     val event = Json.decodeFromString<Event>(line)
                     this.add(event, event.date)
@@ -55,7 +55,7 @@ object EventStore {
             } catch (e:Exception) {
                 print(e)
             }
-        } else {
+        } catch (f: FileNotFoundException) {
             val e = Event(-1, "Record 441 Video", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)
             this.add(e, LocalDate.now())
             this.updateList()

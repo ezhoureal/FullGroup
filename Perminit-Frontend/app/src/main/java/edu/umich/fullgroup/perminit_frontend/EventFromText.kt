@@ -70,11 +70,17 @@ fun makeEvent (input : String): Event? {
             val (myEndTimeString) = endTimeRes!!.destructured
             endTimeString = myEndTimeString
             println(endTimeString)
-
         }
         catch (e: NullPointerException){
             //if there's no end time provided, we assume none exists for now - keep it at zero
         }
+        val badTimeRegex =  """^(\d:\d\d)""".toRegex()
+        val fixedStartTime = badTimeRegex.replace(startTimeString, """0\1""")
+        println ("Fixed:")
+        println (fixedStartTime)
+
+        //todo - replace times of format H:MM with HH:MM (just the string with regex)
+        // todo - replace dates of format M/D  or M/DD &c with MM/DD
 
 
 

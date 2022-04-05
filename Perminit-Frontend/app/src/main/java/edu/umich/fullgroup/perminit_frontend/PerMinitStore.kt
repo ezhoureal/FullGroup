@@ -1,19 +1,13 @@
 package edu.umich.fullgroup.perminit_frontend
 
 import android.content.Context
-import android.util.Log
-import com.google.gson.Gson
-import getJsonDataFromAsset
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import java.io.BufferedReader
 import java.io.File
-import java.io.IOException
-import java.time.LocalDate
-import kotlin.text.split
+import java.io.FileNotFoundException
 
 object PerMinitStore {
     var minits = ArrayList<PerMinit>()
@@ -42,18 +36,22 @@ object PerMinitStore {
     // load PerMinits from local storage
     fun load(context: Context) {
         var f = File(context.filesDir, "minitData.json")
+        try {
 
-        if (f.exists() and f.readLines().isNotEmpty()) {
-            try {
-                val data = f.readLines()
-                for (line in data) {
-                    val minit = Json.decodeFromString<PerMinit>(line)
-                    minits.add(minit)
-                }
-            } catch (e:Exception) {
-                print(e)
+            val data = f.readLines()
+            if (data.isEmpty()) {
+                throw   FileNotFoundException("empty")
             }
-        } else {
+            try {
+                    for (line in data) {
+                        val minit = Json.decodeFromString<PerMinit>(line)
+                        minits.add(minit)
+                    }
+                } catch (e: Exception) {
+                    print(e)
+                }
+        }
+        catch (f: FileNotFoundException){
             minits.add(PerMinit(
                 "Reginald",
                 "Reginald is a British ape with a taste for bananas and tea. He is polite, and always wants to help the user remember their tasks.",
