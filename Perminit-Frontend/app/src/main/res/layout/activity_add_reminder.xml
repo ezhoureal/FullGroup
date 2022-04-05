@@ -88,16 +88,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <ImageView
-        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/pm_1_img"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/ic_minit1"
         android:layout_marginEnd="5dp"
-        app:layout_constraintEnd_toStartOf="@+id/pm_2_img"
+        android:background="?android:attr/selectableItemBackground"
         android:onClick="select_1"
+        android:src="@drawable/ic_minit1"
+        app:layout_constraintEnd_toStartOf="@+id/pm_2_img"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chooseText"
         tools:srcCompat="@tools:sample/avatars" />
@@ -106,11 +106,11 @@
         android:id="@+id/pm_2_img"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@drawable/ic_minit2"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:onClick="select_2"
+        android:src="@drawable/ic_minit2"
         app:layout_constraintStart_toEndOf="@+id/pm_1_img"
         app:layout_constraintTop_toBottomOf="@+id/chooseText"
         tools:srcCompat="@tools:sample/avatars" />
@@ -119,10 +119,10 @@
         android:id="@+id/pm_3_img"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:onClick="select_3"
-        android:src="@drawable/ic_minit3"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
+        android:onClick="select_3"
+        android:src="@drawable/ic_minit3"
         app:layout_constraintStart_toEndOf="@+id/pm_2_img"
         app:layout_constraintTop_toBottomOf="@id/chooseText"
         tools:srcCompat="@tools:sample/avatars" />
@@ -157,8 +157,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="@+id/pm_2_img"
         android:text="@string/minit_2_name"
+        app:layout_constraintStart_toStartOf="@+id/pm_2_img"
         app:layout_constraintTop_toBottomOf="@+id/pm_2_img" />
 
     <TextView
@@ -174,10 +174,11 @@
         android:id="@+id/editTextDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:inputType="date"
-        app:layout_constraintStart_toStartOf="@+id/Save"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
@@ -194,10 +195,10 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:text="Date (Format: MM/DD/YYYY)"
-        app:layout_constraintStart_toStartOf="@+id/editTextDate"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEndTime" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextStartTime"
+        tools:layout_editor_absoluteX="20dp" />
 
     <TextView
         android:id="@+id/endtimelabel"
@@ -235,10 +236,11 @@
         android:id="@+id/descriptionbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="12dp"
         android:hint="description"
         app:layout_constraintEnd_toStartOf="@+id/submitnlp"
 
+        app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
@@ -260,5 +262,27 @@
         android:text="Save from Text"
         app:layout_constraintBottom_toBottomOf="@+id/nlpin"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <CheckBox
+        android:id="@+id/recurringCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="11dp"
+        android:text="@string/recurring_check"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEndTime" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="28dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recurringCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,9 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import android.widget.Spinner
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 
 
 class AddReminder : AppCompatActivity() {
@@ -26,6 +29,17 @@ class AddReminder : AppCompatActivity() {
         createNotificationChannel()
         //view.Save.setOnClickListener { scheduleNotification() }
 
+        val adapter = ArrayAdapter.createFromResource(this,
+            R.array.recurFrames, android.R.layout.simple_spinner_item)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val spinner = findViewById<Spinner>(R.id.spinner)
+        spinner.adapter = adapter
+
+    }
+
+    fun getValues(view: View) {
+        val spinner = findViewById<Spinner>(R.id.spinner)
+        Toast.makeText(this, "Spinner 1 " + spinner.selectedItem.toString(), Toast.LENGTH_LONG).show()
     }
 
 

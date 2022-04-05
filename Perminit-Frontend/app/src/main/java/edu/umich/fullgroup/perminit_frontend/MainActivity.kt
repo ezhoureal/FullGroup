@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.async
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     fun addEvent(view: View?) = startActivityForResult(Intent(this,AddReminder::class.java), 1)

@@ -25,6 +25,13 @@
     <string name="dummy_event">e.g Submit Tax Form</string>
     <string name="dummy_nlp">Type in a new event...</string>
     <string name="add_minit_btn">Create a New Minit</string>
+    <string name="recurring_check">Recurring Event</string>
+    <string-array name="recurFrames">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Annually</item>
+    </string-array>
 
     <!-- String for TodoList screen  -->
     <string name="todolist_title">My To-Do List</string>
