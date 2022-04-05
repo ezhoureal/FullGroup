@@ -77,11 +77,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:hint="@+id/submitNLP"
+        android:id="@+id/submitNLP"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:onClick="nlpSubmitTodo"
         android:clickable="true"
+        android:onClick="nlpSubmitTodo"
+        android:src="@android:drawable/ic_menu_send"
         app:backgroundTint="#03A9F4"
         app:layout_constraintBottom_toBottomOf="@+id/nlpAddTodo"
         app:layout_constraintEnd_toEndOf="@+id/todoButton" />
