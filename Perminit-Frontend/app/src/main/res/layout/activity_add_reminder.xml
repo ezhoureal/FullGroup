@@ -49,7 +49,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="43dp"
         android:text="Event Name"
         android:textSize="25sp"
@@ -92,7 +92,7 @@
         android:id="@+id/pm_1_img"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/ic_minit1"
         android:layout_marginEnd="5dp"
@@ -111,7 +111,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:onClick="select_2"
-        app:layout_constraintEnd_toStartOf="@+id/pm_3_img"
         app:layout_constraintStart_toEndOf="@+id/pm_1_img"
         app:layout_constraintTop_toBottomOf="@+id/chooseText"
         tools:srcCompat="@tools:sample/avatars" />
@@ -204,9 +203,9 @@
         android:id="@+id/endtimelabel"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="20dp"
         android:text="End Time "
-        app:layout_constraintBottom_toTopOf="@+id/editTextStartTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/starttimelabel" />
 
@@ -222,9 +221,9 @@
 
     <TextView
         android:id="@+id/starttimelabel"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:text="Start Time (HH/MM)"
