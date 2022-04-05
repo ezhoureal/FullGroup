@@ -135,7 +135,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:clickable="true"
-        android:contentDescription="@string/add_event_btn"
+        android:contentDescription="@string/add_minit_btn"
         android:onClick="select_4"
         app:backgroundTint="#F44336"
         app:layout_constraintStart_toEndOf="@+id/pm_3_img"
