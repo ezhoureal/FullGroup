@@ -236,22 +236,26 @@ class AddReminder : AppCompatActivity() {
 
         val description = view.descriptionbox.text.toString()
 
-        if (view.recurringCheck.isChecked()) {
+        if (view.recurringCheck.isChecked) {
             val mode = view.spinner.selectedItem.toString()
             val times = view.numTimeRecur.text.toString().toInt()
             for (i in 1..times) {
                 var event = Event(EventStore.id_idx++, title, date, startTime, endTime, perMinitId)
                 event.notes = description
                 EventStore.add(event, date)
-                if (mode == "Daily") {
-                    date = date.plusDays(1)
-                }
-                else if (mode == "Weekly") {
-                    date = date.plusDays(7)
-                } else if (mode == "Monthly"){
-                    date = date.plusMonths(1)
-                } else {
-                    date = date.plusYears(1)
+                date = when (mode) {
+                    "Daily" -> {
+                        date.plusDays(1)
+                    }
+                    "Weekly" -> {
+                        date.plusDays(7)
+                    }
+                    "Monthly" -> {
+                        date.plusMonths(1)
+                    }
+                    else -> {
+                        date.plusYears(1)
+                    }
                 }
             }
         }
