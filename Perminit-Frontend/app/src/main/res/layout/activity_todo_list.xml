@@ -72,7 +72,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="@string/quick_add"
+        android:hint="@string/quick_add"
         app:layout_constraintBottom_toTopOf="@+id/addEventButton"
         app:layout_constraintStart_toStartOf="parent" />
 

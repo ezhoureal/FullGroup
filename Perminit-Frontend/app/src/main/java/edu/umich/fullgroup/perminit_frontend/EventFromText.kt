@@ -53,61 +53,74 @@ fun makeEvent (input : String): Event? {
     try {
 
         //val nameParsed = findNameRegex.find(input.lowercase())?.groupValues?.get(1)?.lowercase()
-        println("found name:")
+//        println("found name:")
         val nameRes = findNameRegex.find(input)
         val (myName) = nameRes!!.destructured
         println(myName)
 
-        println ("Found start time:")
+ //       println ("Found start time:")
         val startTimeRes = findStartTimeRegex.find(input)
         val (startTimeString) = startTimeRes!!.destructured
         println(startTimeString)
 
-
-
-        println ("Found date :")
-        val dateRes = findDateRegex.find(input)
-        val (dateString) = dateRes!!.destructured
-        println(dateString)
-
+        var endTimeString = startTimeString
         try{
-            println ("found description : ")
-            val descRes = findDescRegex.find(input)
-            val (descString ) = descRes!!.destructured
-            println(descString)
+  //          println ("Found end time:")
+            val endTimeRes = findEndTimeRegex.find(input)
+            val (myEndTimeString) = endTimeRes!!.destructured
+            endTimeString = myEndTimeString
+            println(endTimeString)
+
         }
         catch (e: NullPointerException){
-            println ("no thing")
+            //if there's no end time provided, we assume none exists for now - keep it at zero
         }
-        println ("be better")
 
+
+
+        //println ("Found date :")
+        val dateRes = findDateRegex.find(input)
+        val (dateString) = dateRes!!.destructured
+        //println(dateString)
+
+        var descString =""
+
+        try{
+            //println ("found description : ")
+            val descRes = findDescRegex.find(input)
+            var  (myDescString ) = descRes!!.destructured
+            descString=myDescString
+            //println(descString)
+        }
+        catch (e: NullPointerException){
+            //just keep the desc string as nothing
+
+        }
+        //println ("be better")
+
+        //todo: parse the times and dates
+        //val goodEvent = Event (EventStore.idx++,myName,)
 
         //testing bs
         val dume = Event(1, "sample", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)
         return dume
 
-        val parsed = RE.find(input.lowercase())
-
-
-        // groupValues: 1- event name, 2- start time, 3- start date, 4- end time
-        val name = parsed?.groupValues?.get(1)
-        val startTimeStr = parsed?.groupValues?.get(2)?.uppercase()
-        val dateStr = parsed?.groupValues?.get(3) + " " + LocalDate.now().year
-        val endTimeStr = parsed?.groupValues?.get(4)?.uppercase()
-
         val dateFormatter = DateTimeFormatter.ofPattern("MM dd yyyy")
         //well it doesn't sem to like this
-        val date = LocalDate.parse(dateStr, dateFormatter)
+        val date = LocalDate.parse(dateString, dateFormatter)
 
 
         val timeFormatter = DateTimeFormatter.ofPattern("h[:mm] a")
-        val startTime = LocalTime.parse(startTimeStr, timeFormatter)
-        val endTime = LocalTime.parse(endTimeStr, timeFormatter)
+        val startTime = LocalTime.parse(startTimeString, timeFormatter)
+        val endTime = LocalTime.parse(endTimeString, timeFormatter)
 
-        println("making the event!")
+        //println("making the event!")
         //todo - make the eventid and perminit id more better
-        val newe = name?.let { Event(1, it, date, startTime, endTime, 0) }
-        return newe
+        val perminitId = 0
+        val eventID = EventStore.id_idx++
+
+        val outEvent = Event(eventID,myName,date,startTime,endTime,perminitId)
+        return outEvent
     }
     catch (e: Exception){
         //so when it sees an event with id -1
