@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".AddReminder">
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/numTimeRecur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+
+        android:hint="@string/num_recur_times"
+        android:inputType="number"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/editTextDate"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
     <TextView
         android:id="@+id/pageTitle"
         android:layout_width="wrap_content"
@@ -174,8 +186,8 @@
         android:id="@+id/editTextDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
@@ -195,10 +207,13 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="28dp"
         android:text="Date (Format: MM/DD/YYYY)"
-        app:layout_constraintTop_toBottomOf="@+id/editTextStartTime"
-        tools:layout_editor_absoluteX="20dp" />
+        app:layout_constraintEnd_toStartOf="@+id/recurringCheck"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextStartTime" />
 
     <TextView
         android:id="@+id/endtimelabel"
@@ -267,12 +282,10 @@
         android:id="@+id/recurringCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="11dp"
+        android:layout_marginEnd="32dp"
         android:text="@string/recurring_check"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/editTextEndTime" />
 
     <Spinner

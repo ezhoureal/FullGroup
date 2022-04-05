@@ -32,6 +32,7 @@
         <item>Monthly</item>
         <item>Annually</item>
     </string-array>
+    <string name="num_recur_times">Number of recurrences</string>
 
     <!-- String for TodoList screen  -->
     <string name="todolist_title">My To-Do List</string>
