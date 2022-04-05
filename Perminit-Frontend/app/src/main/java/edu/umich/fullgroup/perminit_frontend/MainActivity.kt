@@ -3,7 +3,6 @@ package edu.umich.fullgroup.perminit_frontend
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -53,8 +52,14 @@ class MainActivity : AppCompatActivity() {
     //when the submit from text box button is clicked
 
     fun nlpSubmitTodo(view: View) {
-        val new_event  = makeEvent (findViewById<TextView>(R.id.nlpAddTodo).text.toString())
+        val e : Event?  = makeEvent (findViewById<TextView>(R.id.nlpAddTodo).text.toString())
+        if (e != null && e.title!="EVENT_CREATION_ERROR") {
+            EventStore.add(e,e.date)
+        }
         //todo - store it &c
+        EventStore.updateList()
+
+        finish()
 
 
     }

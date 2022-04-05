@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import edu.umich.fullgroup.perminit_frontend.databinding.ActivityAddReminderBinding
@@ -12,9 +14,6 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import android.widget.Spinner
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 
 
 class AddReminder : AppCompatActivity() {
@@ -154,7 +153,20 @@ class AddReminder : AppCompatActivity() {
 
     fun nlpSubmit (v: View){
         val nlpText = view.nlpin.text.toString()
-        makeEvent(nlpText)
+        println ("petrol")
+        val e: Event? = makeEvent(nlpText)
+        if (e != null) {
+            println (e.title)
+        }
+        if (e != null && e.title!="EVENT_CREATION_ERROR") {
+            EventStore.add(e,e.date)
+        }
+        EventStore.updateList()
+
+        val returnIntent = Intent()
+        setResult(RESULT_OK, returnIntent);
+        finish()
+
         //todo: store it &c
     }
 
@@ -164,6 +176,9 @@ class AddReminder : AppCompatActivity() {
 
         val title = view.NameField.text.toString()
         // get data from view
+
+
+        //still some issues with date time format
 
         // validation check
         if (title == "") {

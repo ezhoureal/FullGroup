@@ -29,7 +29,7 @@ val endNameRegex = startTimeRegexPart+ "|" + endTimeRegexPart +"|"+ dateRegexPar
 //problem here - it's difficult to make it actually minimal - might need 2 different regexes
 // basically, it neeeds to be bot hnon greedy and mandatory  - so if we want more flexibility, moar regexes
 val findNameRegex = ("(?:$nameRegexPart)"+"""\s*(.+?)""" + "(?:$endNameRegex)").toRegex()
-val findDateRegex = ("(?:$dateRegexPart)"+"""\s*(\d+\/\d+)""").toRegex()
+val findDateRegex = ("(?:$dateRegexPart)"+"""\s*(\d+\/\d+\/\d+)""").toRegex()
 
 val findStartTimeRegex = ("(?:$startTimeRegexPart)"+"""\s*(\d+\:\d+)""").toRegex()
 val findEndTimeRegex = ("(?:$endTimeRegexPart)"+    """\s*(\d+:\d+)""").toRegex()
@@ -84,43 +84,41 @@ fun makeEvent (input : String): Event? {
 
 
 
-        //println ("Found date :")
+        println ("Found date :")
         val dateRes = findDateRegex.find(input)
         val (dateString) = dateRes!!.destructured
-        //println(dateString)
+        println(dateString)
 
         var descString =""
 
         try{
-            //println ("found description : ")
+            println ("found description : ")
             val descRes = findDescRegex.find(input)
             var  (myDescString ) = descRes!!.destructured
             descString=myDescString
-            //println(descString)
+            println(descString)
         }
         catch (e: NullPointerException){
             //just keep the desc string as nothing
 
         }
-        //println ("be better")
+        println ("be better")
 
         //todo: parse the times and dates
         //val goodEvent = Event (EventStore.idx++,myName,)
 
         //testing bs
-        val dume = Event(1, "sample", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)
-        return dume
 
-        val dateFormatter = DateTimeFormatter.ofPattern("MM dd yyyy")
+        val dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
         //well it doesn't sem to like this
         val date = LocalDate.parse(dateString, dateFormatter)
 
 
-        val timeFormatter = DateTimeFormatter.ofPattern("h[:mm] a")
+        val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
         val startTime = LocalTime.parse(startTimeString, timeFormatter)
         val endTime = LocalTime.parse(endTimeString, timeFormatter)
 
-        //println("making the event!")
+        println("making the event!")
         //todo - make the eventid and perminit id more better
         val perminitId = 0
         val eventID = EventStore.id_idx++
@@ -129,6 +127,7 @@ fun makeEvent (input : String): Event? {
         return outEvent
     }
     catch (e: Exception){
+        println (e)
         //so when it sees an event with id -1
         val bad_ending = Event(-1, "EVENT_CREATION_ERROR", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)
         return bad_ending
