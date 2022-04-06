@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.async
+import toast
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,11 +56,12 @@ class MainActivity : AppCompatActivity() {
         val e : Event?  = makeEvent (findViewById<TextView>(R.id.nlpAddTodo).text.toString())
         if (e != null && e.title!="EVENT_CREATION_ERROR") {
             EventStore.add(e,e.date)
+            EventStore.updateList()
+            finish()
         }
-        //todo - store it &c
-        EventStore.updateList()
-
-        finish()
+        if (e == null) {
+            toast("Failed to process input")
+        }
 
 
     }

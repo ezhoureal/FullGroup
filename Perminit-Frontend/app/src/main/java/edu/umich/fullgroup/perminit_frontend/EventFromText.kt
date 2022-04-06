@@ -1,5 +1,7 @@
 package edu.umich.fullgroup.perminit_frontend
 
+import android.content.Context
+import android.widget.Toast
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -127,10 +129,7 @@ fun makeEvent (input : String): Event? {
         return outEvent
     }
     catch (e: Exception){
-        println (e)
-        //so when it sees an event with id -1
-        val bad_ending = Event(-1, "EVENT_CREATION_ERROR", LocalDate.now(), LocalTime.now(), LocalTime.now(), 0)
-        return bad_ending
+        return null
 
     }
 }

@@ -10,6 +10,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import edu.umich.fullgroup.perminit_frontend.databinding.ActivityAddReminderBinding
+import toast
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -160,12 +161,14 @@ class AddReminder : AppCompatActivity() {
         }
         if (e != null && e.title!="EVENT_CREATION_ERROR") {
             EventStore.add(e,e.date)
+            EventStore.updateList()
+            val returnIntent = Intent()
+            setResult(RESULT_OK, returnIntent);
+            finish()
         }
-        EventStore.updateList()
-
-        val returnIntent = Intent()
-        setResult(RESULT_OK, returnIntent);
-        finish()
+        else {
+            toast("Failed to process input")
+        }
 
         //todo: store it &c
     }
