@@ -57,7 +57,10 @@ class MainActivity : AppCompatActivity() {
         if (e != null && e.title!="EVENT_CREATION_ERROR") {
             EventStore.add(e,e.date)
             EventStore.updateList()
-            finish()
+
+            recyclerView.adapter?.notifyDataSetChanged()
+            //view.refreshDrawableState()
+            //finish()
         }
         if (e == null) {
             toast("Failed to process input")
