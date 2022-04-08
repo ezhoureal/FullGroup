@@ -1,20 +1,16 @@
 package edu.umich.fullgroup.perminit_frontend
 
-import android.content.Context
-import android.widget.Toast
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-val RE = "((?<=event ).*) from (.*(?= on)) on (.*(?= to)) to (.*)$".toRegex()
-
 
 //add event play golf from 12:00 until 13:00 on 10/21/2022 with note bring my nine iron
-val eventNameKeywords = arrayOf("add event", "new event")
-val startTimeKeywords = arrayOf("from")
-val endTimeKeywords = arrayOf("until")
-val dateKeywords = arrayOf ("on")
-val descriptionKeywords = arrayOf ("with note")
+val eventNameKeywords = arrayOf("add event", "new event",  "schedule","""\w?""")
+val startTimeKeywords = arrayOf("from", "starting at")
+val endTimeKeywords = arrayOf("until", "ending at")
+val dateKeywords = arrayOf ("on date", "on", "date")
+val descriptionKeywords = arrayOf ("with note", "description")
 
 val nameRegexPart = eventNameKeywords.joinToString ( "|")
 val startTimeRegexPart = startTimeKeywords.joinToString  ("|")
@@ -102,9 +98,7 @@ fun makeEvent (input : String): Event? {
         }
         catch (e: NullPointerException){
             //just keep the desc string as nothing
-
         }
-        println ("be better")
 
         //todo: parse the times and dates
         //val goodEvent = Event (EventStore.idx++,myName,)
