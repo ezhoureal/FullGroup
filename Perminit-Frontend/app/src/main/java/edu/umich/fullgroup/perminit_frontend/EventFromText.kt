@@ -47,6 +47,7 @@ val findDescRegex = ("(?:$descriptionRegexPart)"+"""\s*(.+)$""").toRegex()
     MMM = month abbreviation (Jan, Feb, ...). Cannot write full month name
  */
 
+
 fun makeEvent (input : String): Event? {
     try {
 
@@ -72,6 +73,8 @@ fun makeEvent (input : String): Event? {
         catch (e: NullPointerException){
             //if there's no end time provided, we assume none exists for now - keep it at zero
         }
+
+
         val badTimeRegex =  """^(\d:\d\d)""".toRegex()
         val fixedStartTime = badTimeRegex.replace(startTimeString, """0\1""")
         println ("Fixed:")

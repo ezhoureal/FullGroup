@@ -264,8 +264,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="NLP input"
-        app:layout_constraintEnd_toStartOf="@+id/submitnlp"
+        android:hint="text input"
+        app:layout_constraintEnd_toStartOf="@+id/nlphelper"
+        app:layout_constraintHorizontal_bias="0.246"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptionbox" />
 
@@ -297,5 +298,14 @@
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recurringCheck" />
+
+    <Button
+        android:id="@+id/nlphelper"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:onClick="nlpHelp"
+        app:icon="@android:drawable/ic_menu_help"
+        app:layout_constraintEnd_toStartOf="@+id/submitnlp"
+        app:layout_constraintTop_toTopOf="@+id/submitnlp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

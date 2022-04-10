@@ -50,6 +50,11 @@ class MainActivity : AppCompatActivity() {
         MainScope().async { PerMinitStore.store(applicationContext) }
     }
 
+    fun todoNlpHelp (v: View){
+
+        toast ("${getString(R.string.nlp_help)}")
+    }
+
     //when the submit from text box button is clicked
 
     fun nlpSubmitTodo(view: View) {

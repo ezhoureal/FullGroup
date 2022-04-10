@@ -173,6 +173,10 @@ class AddReminder : AppCompatActivity() {
         //todo: store it &c
     }
 
+    fun nlpHelp (v: View){
+        toast ("${getString(R.string.nlp_help)}")
+    }
+
     // called when submit button is pushed
     fun onSubmit(v: View) {
         scheduleNotification()

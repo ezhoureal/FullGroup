@@ -67,14 +67,25 @@
         android:id="@+id/nlpAddTodo"
         android:layout_width="275dp"
         android:layout_height="50dp"
-        android:layout_marginStart="20dp"
         android:layout_marginBottom="16dp"
         android:ems="10"
+        android:hint="@string/nlp_help"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:hint="@string/quick_add"
         app:layout_constraintBottom_toTopOf="@+id/addEventButton"
+        app:layout_constraintEnd_toStartOf="@+id/todoNlpHelper"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/todoNlpHelper"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:onClick="todoNlpHelp"
+        android:src="@android:drawable/ic_menu_help"
+        app:backgroundTint="#03A9F4"
+        app:layout_constraintBottom_toBottomOf="@+id/nlpAddTodo"
+        app:layout_constraintEnd_toStartOf="@+id/submitNLP" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/submitNLP"
@@ -85,7 +96,9 @@
         android:src="@android:drawable/ic_menu_send"
         app:backgroundTint="#03A9F4"
         app:layout_constraintBottom_toBottomOf="@+id/nlpAddTodo"
-        app:layout_constraintEnd_toEndOf="@+id/todoButton" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nlpAddTodo"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventList"

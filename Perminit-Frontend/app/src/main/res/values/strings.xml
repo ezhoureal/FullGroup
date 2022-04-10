@@ -58,4 +58,7 @@
     <string name="calendar_title">My Calendar</string>
     <string name="event_time_days">1 d</string>
     <string name="event_loc">Event Location</string>
+
+
+    <string name="nlp_help">e.g make event fishing on 12/22/2022 from 12:40 until 13:45</string>
 </resources>
