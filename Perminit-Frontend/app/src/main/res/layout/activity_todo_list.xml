@@ -70,7 +70,6 @@
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="Type in a new event here"
-        android:text="new event fishing on 04/10/2022 from 2:44"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/addEventButton"
