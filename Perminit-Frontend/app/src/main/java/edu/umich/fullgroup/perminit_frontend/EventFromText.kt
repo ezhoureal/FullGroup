@@ -6,11 +6,12 @@ import java.time.format.DateTimeFormatter
 
 
 //add event play golf from 12:00 until 13:00 on 10/21/2022 with note bring my nine iron
-val eventNameKeywords = arrayOf("add event", "new event",  "schedule","""\w?""")
+val eventNameKeywords = arrayOf("add event", "new event",  "schedule", "make event", """\w?""")
 val startTimeKeywords = arrayOf("from", "starting at")
 val endTimeKeywords = arrayOf("until", "ending at")
-val dateKeywords = arrayOf ("on date", "on", "date")
+val dateKeywords = arrayOf ("on date", " on")
 val descriptionKeywords = arrayOf ("with note", "description")
+
 
 val nameRegexPart = eventNameKeywords.joinToString ( "|")
 val startTimeRegexPart = startTimeKeywords.joinToString  ("|")
@@ -20,7 +21,7 @@ val descriptionRegexPart = descriptionKeywords.joinToString("|")
 
 
 
-//logic for this is that the name is rather free form
+//logic for this is that the name is rather free form, so just do it until we match a different thing
 val endNameRegex = startTimeRegexPart+ "|" + endTimeRegexPart +"|"+ dateRegexPart +"|" + descriptionRegexPart
 
 //logic for this is that the name is rather free form
@@ -59,12 +60,23 @@ fun makeEvent (input : String): Event? {
 
  //       println ("Found start time:")
         val startTimeRes = findStartTimeRegex.find(input)
-        val (startTimeString) = startTimeRes!!.destructured
+        var (startTimeString) = startTimeRes!!.destructured
         println(startTimeString)
+
+
+
+        val badTimeRegex =  """^(\d:\d\d)""".toRegex()
+        if ( badTimeRegex.matches(startTimeString)){
+            startTimeString = "0$startTimeString"
+            println (startTimeString)
+
+        }
+        println ("Fixed:")
+        println (startTimeString)
 
         var endTimeString = startTimeString
         try{
-  //          println ("Found end time:")
+            //          println ("Found end time:")
             val endTimeRes = findEndTimeRegex.find(input)
             val (myEndTimeString) = endTimeRes!!.destructured
             endTimeString = myEndTimeString
@@ -74,11 +86,12 @@ fun makeEvent (input : String): Event? {
             //if there's no end time provided, we assume none exists for now - keep it at zero
         }
 
+        if ( badTimeRegex.matches(endTimeString)){
+            endTimeString = "0$endTimeString"
+            println (endTimeString)
 
-        val badTimeRegex =  """^(\d:\d\d)""".toRegex()
-        val fixedStartTime = badTimeRegex.replace(startTimeString, """0\1""")
-        println ("Fixed:")
-        println (fixedStartTime)
+        }
+
 
         //todo - replace times of format H:MM with HH:MM (just the string with regex)
         // todo - replace dates of format M/D  or M/DD &c with MM/DD
@@ -87,8 +100,15 @@ fun makeEvent (input : String): Event? {
 
         println ("Found date :")
         val dateRes = findDateRegex.find(input)
-        val (dateString) = dateRes!!.destructured
+        var (dateString) = dateRes!!.destructured
         println(dateString)
+
+        val badMonthRegex =  """^(\d\/\d\d\/\d\d\d\d)""".toRegex()
+        if ( badMonthRegex.matches(dateString)){
+            dateString = "0" + dateString
+
+        }
+
 
         var descString =""
 
@@ -117,8 +137,9 @@ fun makeEvent (input : String): Event? {
         val startTime = LocalTime.parse(startTimeString, timeFormatter)
         val endTime = LocalTime.parse(endTimeString, timeFormatter)
 
+        //todo - allow selection of minits
+
         println("making the event!")
-        //todo - make the eventid and perminit id more better
         val perminitId = 0
         val eventID = EventStore.id_idx++
 
@@ -126,7 +147,11 @@ fun makeEvent (input : String): Event? {
         return outEvent
     }
     catch (e: Exception){
+
         return null
+    }
+    // I am not entirely sure why it wants this, seeing as how it is unreachable
+    finally {
 
     }
 }
