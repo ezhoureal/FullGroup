@@ -29,17 +29,17 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/EditEventButton"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="76dp"
             android:clickable="true"
-            android:onClick="editEvent"
             android:contentDescription="@string/edit_btn"
-            android:translationX="0dp"
-            android:translationY="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="editEvent"
+            app:fabCustomSize="40dp"
+            app:backgroundTint="@color/blue_500"
+            app:layout_constraintEnd_toEndOf="@+id/minitText"
+            app:layout_constraintBottom_toTopOf="@+id/minitText"
+            app:layout_constraintTop_toBottomOf="@id/eventName"
+            app:rippleColor="@color/blue_200"
             app:srcCompat="@android:drawable/ic_menu_edit"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -82,11 +82,11 @@
 
         <TextView
             android:id="@+id/minitText"
+            android:text="@string/minit_msg"
             android:layout_width="228dp"
             android:layout_height="58dp"
-            android:text="@string/minit_msg"
-            android:translationX="70dp"
-            android:translationY="90dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="90dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
