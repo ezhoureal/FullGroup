@@ -10,66 +10,55 @@
         android:id="@+id/pageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="16dp"
-        android:text="@string/new_e_title"
+        android:text="@string/edit_e_title"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/Save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="16dp"
-        android:text="Save"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/orange_700"
         android:clickable="true"
-        android:onClick ="onSubmit"
+        android:onClick="onSubmit"
+        android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cancel"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="16dp"
-        android:text="Cancel"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/blue_500"
         android:clickable="true"
-        android:onClick ="cancel"
+        android:onClick="cancel"
+        android:text="CANCEL"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Save"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="43dp"
-        android:text="Event Name"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pageTitle" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="409dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/pageTitle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/NameField"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="enter event name"
+            android:hint="Enter event name"
             tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="Choose your PerMinit!"
 
         android:textSize="25sp"
@@ -90,12 +79,11 @@
         android:id="@+id/pm_1_img"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/ic_minit1"
         android:layout_marginEnd="5dp"
-        app:layout_constraintEnd_toStartOf="@+id/pm_2_img"
         android:onClick="select_1"
+        app:layout_constraintEnd_toStartOf="@+id/pm_2_img"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chooseText"
         tools:srcCompat="@tools:sample/avatars" />
@@ -105,9 +93,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/ic_minit2"
-        android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
         android:onClick="select_2"
         app:layout_constraintEnd_toStartOf="@+id/pm_3_img"
         app:layout_constraintStart_toEndOf="@+id/pm_1_img"
@@ -123,6 +109,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toEndOf="@+id/pm_2_img"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/chooseText"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -154,68 +141,72 @@
         app:layout_constraintTop_toBottomOf="@+id/pm_3_img" />
 
     <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="wrap_content"
+        android:id="@+id/editTextStartTime"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
         android:ems="10"
-        android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/descriptionbox"
-        app:layout_constraintStart_toStartOf="@+id/Save" />
+        android:inputType="time"
+        app:layout_constraintTop_toBottomOf="@+id/pm_1_name"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEndTime"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/editTextEndTime"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
         android:ems="10"
         android:inputType="time"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/editTextDate" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Date (Format: YYYY-MM-DD)"
+        app:layout_constraintTop_toBottomOf="@+id/editTextStartTime"
         app:layout_constraintBottom_toTopOf="@+id/editTextDate"
-        app:layout_constraintStart_toStartOf="@+id/editTextDate" />
-
-    <TextView
-        android:id="@+id/endtimelabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="End Time (Format: HH:MM 24 hour time)"
-        app:layout_constraintBottom_toTopOf="@+id/editTextEndTime"
-        app:layout_constraintStart_toStartOf="@+id/editTextEndTime" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextStartTime" />
 
     <EditText
-        android:id="@+id/editTextStartTime"
-        android:layout_width="wrap_content"
+        android:id="@+id/editTextDate"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
         android:ems="10"
-        android:inputType="time"
-        app:layout_constraintBottom_toTopOf="@+id/endtimelabel"
-        app:layout_constraintStart_toStartOf="@+id/endtimelabel" />
+        android:inputType="date"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEndTime"
+        app:layout_constraintBottom_toTopOf="@+id/descriptionbox"
+        app:layout_constraintEnd_toEndOf="@+id/editTextStartTime" />
 
     <TextView
         android:id="@+id/starttimelabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Start Time (Format: HH:MM 24 hour time)"
-        app:layout_constraintBottom_toTopOf="@+id/editTextStartTime"
-        app:layout_constraintStart_toStartOf="@+id/editTextStartTime" />
+        android:layout_marginStart="20dp"
+        android:text="Start Time (HH:MM 24 hour time)"
+        app:layout_constraintTop_toTopOf="@+id/editTextStartTime"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextStartTime"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/endtimelabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="End Time (HH:MM 24 hour time)"
+        app:layout_constraintTop_toTopOf="@+id/editTextEndTime"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextEndTime"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="Date (Format: YYYY-MM-DD)"
+        app:layout_constraintTop_toTopOf="@+id/editTextDate"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextDate"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/descriptionbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:hint="description"
+        android:hint="Description"
         app:layout_constraintBottom_toTopOf="@+id/Save"
         tools:layout_editor_absoluteX="10dp" />
 
