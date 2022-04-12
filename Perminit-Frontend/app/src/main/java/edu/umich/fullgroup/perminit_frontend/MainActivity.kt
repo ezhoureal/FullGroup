@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     fun todoNlpHelp (v: View){
 
-        toast ("${getString(R.string.nlp_help)}")
+        toast ("${getString(R.string.nlp_help)}",false)
     }
 
     //when the submit from text box button is clicked

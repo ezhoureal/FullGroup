@@ -167,7 +167,7 @@ class AddReminder : AppCompatActivity() {
             finish()
         }
         else {
-            toast("Failed to process input")
+            toast("Failed to process input",false)
         }
 
         //todo: store it &c

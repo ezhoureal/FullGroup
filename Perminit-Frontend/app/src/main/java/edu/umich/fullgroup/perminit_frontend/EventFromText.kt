@@ -10,19 +10,20 @@ val eventNameKeywords = arrayOf("add event", "new event",  "schedule", "make eve
 val startTimeKeywords = arrayOf("from", "starting at")
 val endTimeKeywords = arrayOf("until", "ending at")
 val dateKeywords = arrayOf ("on date", " on")
-val descriptionKeywords = arrayOf ("with note", "description")
+//val descriptionKeywords = arrayOf ("with note", "description")
+val descriptionKeywords = arrayOf<String>()
 
 
 val nameRegexPart = eventNameKeywords.joinToString ( "|")
 val startTimeRegexPart = startTimeKeywords.joinToString  ("|")
 val endTimeRegexPart = endTimeKeywords.joinToString("|")
 val dateRegexPart = dateKeywords.joinToString("|")
-val descriptionRegexPart = descriptionKeywords.joinToString("|")
-
+//val descriptionRegexPart = descriptionKeywords.joinToString("|")
 
 
 //logic for this is that the name is rather free form, so just do it until we match a different thing
-val endNameRegex = startTimeRegexPart+ "|" + endTimeRegexPart +"|"+ dateRegexPart +"|" + descriptionRegexPart
+val endNameRegex = startTimeRegexPart+ "|" + endTimeRegexPart +"|"+ dateRegexPart
+//+"|" + descriptionRegexPart
 
 //logic for this is that the name is rather free form
 //problem here - it's difficult to make it actually minimal - might need 2 different regexes
@@ -32,8 +33,7 @@ val findDateRegex = ("(?:$dateRegexPart)"+"""\s*(\d+\/\d+\/\d+)""").toRegex()
 
 val findStartTimeRegex = ("(?:$startTimeRegexPart)"+"""\s*(\d+\:\d+)""").toRegex()
 val findEndTimeRegex = ("(?:$endTimeRegexPart)"+    """\s*(\d+:\d+)""").toRegex()
-
-val findDescRegex = ("(?:$descriptionRegexPart)"+"""\s*(.+)$""").toRegex()
+//val findDescRegex = ("(?:$descriptionRegexPart)"+"""\s*(.+)$""").toRegex()
 
 
 
@@ -49,20 +49,16 @@ val findDescRegex = ("(?:$descriptionRegexPart)"+"""\s*(.+)$""").toRegex()
  */
 
 
-fun makeEvent (input : String): Event? {
+fun makeEvent (rawInput : String): Event? {
+    val input = rawInput.lowercase()
     try {
 
-        //val nameParsed = findNameRegex.find(input.lowercase())?.groupValues?.get(1)?.lowercase()
-//        println("found name:")
         val nameRes = findNameRegex.find(input)
         val (myName) = nameRes!!.destructured
         println(myName)
 
- //       println ("Found start time:")
         val startTimeRes = findStartTimeRegex.find(input)
         var (startTimeString) = startTimeRes!!.destructured
-        println(startTimeString)
-
 
 
         val badTimeRegex =  """^(\d:\d\d)""".toRegex()
@@ -97,18 +93,28 @@ fun makeEvent (input : String): Event? {
         // todo - replace dates of format M/D  or M/DD &c with MM/DD
 
 
+        var date = LocalDate.now()
 
-        println ("Found date :")
-        val dateRes = findDateRegex.find(input)
-        var (dateString) = dateRes!!.destructured
-        println(dateString)
+        try {
+            println("Found date :")
+            val dateRes = findDateRegex.find(input)
+            var (dateString) = dateRes!!.destructured
+            println(dateString)
 
-        val badMonthRegex =  """^(\d\/\d\d\/\d\d\d\d)""".toRegex()
-        if ( badMonthRegex.matches(dateString)){
-            dateString = "0" + dateString
+            val badMonthRegex = """^(\d\/\d\d\/\d\d\d\d)""".toRegex()
+            if (badMonthRegex.matches(dateString)) {
+                dateString = "0" + dateString
 
+            }
+            val dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
+            //well it doesn't sem to like this
+            date = LocalDate.parse(dateString, dateFormatter)
+        }
+        catch (ne :NullPointerException) {
+            println("nodate")
         }
 
+        /*
 
         var descString =""
 
@@ -122,15 +128,14 @@ fun makeEvent (input : String): Event? {
         catch (e: NullPointerException){
             //just keep the desc string as nothing
         }
+        *
+         */
 
         //todo: parse the times and dates
         //val goodEvent = Event (EventStore.idx++,myName,)
 
         //testing bs
 
-        val dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
-        //well it doesn't sem to like this
-        val date = LocalDate.parse(dateString, dateFormatter)
 
 
         val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
@@ -146,8 +151,7 @@ fun makeEvent (input : String): Event? {
         val outEvent = Event(eventID,myName,date,startTime,endTime,perminitId)
         return outEvent
     }
-    catch (e: Exception){
-
+    catch (e: Exception) {
         return null
     }
     // I am not entirely sure why it wants this, seeing as how it is unreachable
@@ -155,4 +159,3 @@ fun makeEvent (input : String): Event? {
 
     }
 }
-
