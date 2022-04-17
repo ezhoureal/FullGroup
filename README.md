@@ -8,5 +8,5 @@
 ![Team](/assets/team.png)
 
 [demo_page]: https://youtu.be/sample
-[wiki_page]: https://github.com/member/team/wiki
+[wiki_page]: https://github.com/ezhoureal/FullGroup/wiki
 [process_page]: https://trello.com/b/OLl0lWKv/full-group
