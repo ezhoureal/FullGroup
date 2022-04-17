@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -15,10 +16,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        def Properties localProperties = new Properties()
-        localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
-//        buildConfigField "String", "API_KEY", localProperties['OPENAI_API_KEY']
     }
 
     buildFeatures {

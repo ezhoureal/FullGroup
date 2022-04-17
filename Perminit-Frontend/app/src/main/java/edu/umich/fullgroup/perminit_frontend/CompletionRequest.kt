@@ -1,8 +1,5 @@
 package edu.umich.fullgroup.perminit_frontend
 
-import java.io.File
-import java.io.FileInputStream
-import java.util.*
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.engine.Davinci
 import com.aallam.openai.api.engine.Engine
@@ -11,9 +8,7 @@ import android.util.Log
 import kotlinx.coroutines.*
 
 object TextCompleter {
-//    val openAI = OpenAI(BuildConfig.API_KEY)
-    val openAI = OpenAI("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")
-    
+    val openAI = OpenAI(BuildConfig.OPENAI_API_KEY)
     fun onCreate() = runBlocking {
         launch {
             val davinci: Engine = openAI.engine(Davinci)
